@@ -10,7 +10,7 @@ The generator `timescales` includes a Makefile to demonstrate the generation of 
 
 ## help
 
-The Python script `reelay_benchgen` is the benchmark generator of `timescales`. The full interface of the benchmark generator is as follows:
+The full interface of the benchmark generator `timescales` is as follows:
 
     usage: timescales [-h] [-d N] [-l N] [-u N] [--min-recur N] [--max-recur N]
                       [--name STRING] [--condense N] [--failing-end] [--future]
