@@ -1,0 +1,3 @@
+---
+name : "RespondGLB"
+pattern : "historically((s -> once[3:10] p) and not( not(s) since[:10] p))"

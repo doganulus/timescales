@@ -1,0 +1,3 @@
+---
+name : "AbsentAQ"
+pattern : "historically((once[:10](q)) -> ((not p) since q))"
