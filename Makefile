@@ -70,7 +70,7 @@ large:
 	./timescales response_between_q_and_r --lbound 30 --ubound 100 --duration 1000000 --name RespondBQR100 --output-dir ${DIR}/largesuite/RespondBQR
 	./timescales response_between_q_and_r --lbound 300 --ubound 1000 --duration 1000000 --name RespondBQR1000 --output-dir ${DIR}/largesuite/RespondBQR
 
-full: full-100K full-100K-10 full-100K-100 full-1M
+full: full-100K full-100K-10 full-100K-100 full-1M  full-1M-10  full-1M-100
 
 full-100K:
 	mkdir -p ${DIR}/fullsuite/AbsentAQ/Discrete/100K
@@ -186,9 +186,9 @@ full-100K-100:
 	./timescales absence_before_r --ubound 1000 --duration 100000 --name AbsentBR1000 --condense 100 --output-dir ${DIR}/fullsuite/AbsentBR/Dense100/100K
 
 	mkdir -p ${DIR}/fullsuite/AbsentBQR/Dense100/100K
-	./timescales absence_between_q_and_r --lbound 3 --ubound 10 --duration 100000 --name AbsentBQR10 --condense 100 --output-dir ${DIR}/fullsuite/AbsentBQR/Dense100/100K
-	./timescales absence_between_q_and_r --lbound 30 --ubound 100 --duration 100000 --name AbsentBQR100 --condense 100 --output-dir ${DIR}/fullsuite/AbsentBQR/Dense100/100K
-	./timescales absence_between_q_and_r --lbound 300 --ubound 1000 --duration 100000 --name AbsentBQR1000 --condense 100 --output-dir ${DIR}/fullsuite/AbsentBQR/Dense100/100K
+	./timescales absence_between_q_and_r --lbound 3 --ubound 10 --duration 1000000 --name AbsentBQR10 --condense 100 --output-dir ${DIR}/fullsuite/AbsentBQR/Dense100/100K
+	./timescales absence_between_q_and_r --lbound 30 --ubound 100 --duration 1000000 --name AbsentBQR100 --condense 100 --output-dir ${DIR}/fullsuite/AbsentBQR/Dense100/100K
+	./timescales absence_between_q_and_r --lbound 300 --ubound 1000 --duration 1000000 --name AbsentBQR1000 --condense 100 --output-dir ${DIR}/fullsuite/AbsentBQR/Dense100/100K
 
 	mkdir -p ${DIR}/fullsuite/AlwaysAQ/Dense100/100K
 	./timescales always_after_q --ubound 10 --duration 100000 --name AlwaysAQ10 --condense 100 --output-dir ${DIR}/fullsuite/AlwaysAQ/Dense100/100K
@@ -226,55 +226,158 @@ full-100K-100:
 	./timescales response_between_q_and_r --lbound 300 --ubound 1000 --duration 100000 --name RespondBQR1000 --condense 100 --output-dir ${DIR}/fullsuite/RespondBQR/Dense100/100K
 
 full-1M:
-	mkdir -p ${DIR}/fullsuite/AbsentAQ/1M
-	./timescales absence_after_q --ubound 10 --duration 1000000 --name AbsentAQ10 --output-dir ${DIR}/fullsuite/AbsentAQ/1M
-	./timescales absence_after_q --ubound 100 --duration 1000000 --name AbsentAQ100 --output-dir ${DIR}/fullsuite/AbsentAQ/1M
-	./timescales absence_after_q --ubound 1000 --duration 1000000 --name AbsentAQ1000 --output-dir ${DIR}/fullsuite/AbsentAQ/1M
+	mkdir -p ${DIR}/fullsuite/AbsentAQ/Discrete/1M
+	./timescales absence_after_q --ubound 10 --duration 1000000 --name AbsentAQ10 --output-dir ${DIR}/fullsuite/AbsentAQ/Discrete/1M
+	./timescales absence_after_q --ubound 100 --duration 1000000 --name AbsentAQ100 --output-dir ${DIR}/fullsuite/AbsentAQ/Discrete/1M
+	./timescales absence_after_q --ubound 1000 --duration 1000000 --name AbsentAQ1000 --output-dir ${DIR}/fullsuite/AbsentAQ/Discrete/1M
 
-	mkdir -p ${DIR}/fullsuite/AbsentBR/1M
-	./timescales absence_before_r --ubound 10 --duration 1000000 --name AbsentBR10 --output-dir ${DIR}/fullsuite/AbsentBR/1M
-	./timescales absence_before_r --ubound 100 --duration 1000000 --name AbsentBR100 --output-dir ${DIR}/fullsuite/AbsentBR/1M
-	./timescales absence_before_r --ubound 1000 --duration 1000000 --name AbsentBR1000 --output-dir ${DIR}/fullsuite/AbsentBR/1M
+	mkdir -p ${DIR}/fullsuite/AbsentBR/Discrete/1M
+	./timescales absence_before_r --ubound 10 --duration 1000000 --name AbsentBR10 --output-dir ${DIR}/fullsuite/AbsentBR/Discrete/1M
+	./timescales absence_before_r --ubound 100 --duration 1000000 --name AbsentBR100 --output-dir ${DIR}/fullsuite/AbsentBR/Discrete/1M
+	./timescales absence_before_r --ubound 1000 --duration 1000000 --name AbsentBR1000 --output-dir ${DIR}/fullsuite/AbsentBR/Discrete/1M
 
-	mkdir -p ${DIR}/fullsuite/AbsentBQR/1M
-	./timescales absence_between_q_and_r --lbound 3 --ubound 10 --duration 1000000 --name AbsentBQR10 --output-dir ${DIR}/fullsuite/AbsentBQR/1M
-	./timescales absence_between_q_and_r --lbound 30 --ubound 100 --duration 1000000 --name AbsentBQR100 --output-dir ${DIR}/fullsuite/AbsentBQR/1M
-	./timescales absence_between_q_and_r --lbound 300 --ubound 1000 --duration 1000000 --name AbsentBQR1000 --output-dir ${DIR}/fullsuite/AbsentBQR/1M
+	mkdir -p ${DIR}/fullsuite/AbsentBQR/Discrete/1M
+	./timescales absence_between_q_and_r --lbound 3 --ubound 10 --duration 1000000 --name AbsentBQR10 --output-dir ${DIR}/fullsuite/AbsentBQR/Discrete/1M
+	./timescales absence_between_q_and_r --lbound 30 --ubound 100 --duration 1000000 --name AbsentBQR100 --output-dir ${DIR}/fullsuite/AbsentBQR/Discrete/1M
+	./timescales absence_between_q_and_r --lbound 300 --ubound 1000 --duration 1000000 --name AbsentBQR1000 --output-dir ${DIR}/fullsuite/AbsentBQR/Discrete/1M
 
-	mkdir -p ${DIR}/fullsuite/AlwaysAQ/1M
-	./timescales always_after_q --ubound 10 --duration 1000000 --name AlwaysAQ10 --output-dir ${DIR}/fullsuite/AlwaysAQ/1M
-	./timescales always_after_q --ubound 100 --duration 1000000 --name AlwaysAQ100 --output-dir ${DIR}/fullsuite/AlwaysAQ/1M
-	./timescales always_after_q --ubound 1000 --duration 1000000 --name AlwaysAQ1000 --output-dir ${DIR}/fullsuite/AlwaysAQ/1M
+	mkdir -p ${DIR}/fullsuite/AlwaysAQ/Discrete/1M
+	./timescales always_after_q --ubound 10 --duration 1000000 --name AlwaysAQ10 --output-dir ${DIR}/fullsuite/AlwaysAQ/Discrete/1M
+	./timescales always_after_q --ubound 100 --duration 1000000 --name AlwaysAQ100 --output-dir ${DIR}/fullsuite/AlwaysAQ/Discrete/1M
+	./timescales always_after_q --ubound 1000 --duration 1000000 --name AlwaysAQ1000 --output-dir ${DIR}/fullsuite/AlwaysAQ/Discrete/1M
 
-	mkdir -p ${DIR}/fullsuite/AlwaysBR/1M
-	./timescales always_before_r --ubound 10 --duration 1000000 --name AlwaysBR10 --output-dir ${DIR}/fullsuite/AlwaysBR/1M
-	./timescales always_before_r --ubound 100 --duration 1000000 --name AlwaysBR100 --output-dir ${DIR}/fullsuite/AlwaysBR/1M
-	./timescales always_before_r --ubound 1000 --duration 1000000 --name AlwaysBR100 --output-dir ${DIR}/fullsuite/AlwaysBR/1M
+	mkdir -p ${DIR}/fullsuite/AlwaysBR/Discrete/1M
+	./timescales always_before_r --ubound 10 --duration 1000000 --name AlwaysBR10 --output-dir ${DIR}/fullsuite/AlwaysBR/Discrete/1M
+	./timescales always_before_r --ubound 100 --duration 1000000 --name AlwaysBR100 --output-dir ${DIR}/fullsuite/AlwaysBR/Discrete/1M
+	./timescales always_before_r --ubound 1000 --duration 1000000 --name AlwaysBR100 --output-dir ${DIR}/fullsuite/AlwaysBR/Discrete/1M
 
-	mkdir -p ${DIR}/fullsuite/AlwaysBQR/1M
-	./timescales always_between_q_and_r --lbound 3 --ubound 10 --duration 1000000 --name AlwaysBQR10 --output-dir ${DIR}/fullsuite/AlwaysBQR/1M
-	./timescales always_between_q_and_r --lbound 30 --ubound 100 --duration 1000000 --name AlwaysBQR100 --output-dir ${DIR}/fullsuite/AlwaysBQR/1M
-	./timescales always_between_q_and_r --lbound 300 --ubound 1000 --duration 1000000 --name AlwaysBQR1000 --output-dir ${DIR}/fullsuite/AlwaysBQR/1M
+	mkdir -p ${DIR}/fullsuite/AlwaysBQR/Discrete/1M
+	./timescales always_between_q_and_r --lbound 3 --ubound 10 --duration 1000000 --name AlwaysBQR10 --output-dir ${DIR}/fullsuite/AlwaysBQR/Discrete/1M
+	./timescales always_between_q_and_r --lbound 30 --ubound 100 --duration 1000000 --name AlwaysBQR100 --output-dir ${DIR}/fullsuite/AlwaysBQR/Discrete/1M
+	./timescales always_between_q_and_r --lbound 300 --ubound 1000 --duration 1000000 --name AlwaysBQR1000 --output-dir ${DIR}/fullsuite/AlwaysBQR/Discrete/1M
 
-	mkdir -p ${DIR}/fullsuite/RecurGLB/1M
-	./timescales recurrence_globally --lbound 3 --ubound 10 --duration 1000000 --name RecurGLB10 --output-dir ${DIR}/fullsuite/RecurGLB/1M
-	./timescales recurrence_globally --lbound 30 --ubound 100 --duration 1000000 --name RecurGLB100 --output-dir ${DIR}/fullsuite/RecurGLB/1M
-	./timescales recurrence_globally --lbound 300 --ubound 1000 --duration 1000000 --name RecurGLB1000 --output-dir ${DIR}/fullsuite/RecurGLB/1M
+	mkdir -p ${DIR}/fullsuite/RecurGLB/Discrete/1M
+	./timescales recurrence_globally --lbound 3 --ubound 10 --duration 1000000 --name RecurGLB10 --output-dir ${DIR}/fullsuite/RecurGLB/Discrete/1M
+	./timescales recurrence_globally --lbound 30 --ubound 100 --duration 1000000 --name RecurGLB100 --output-dir ${DIR}/fullsuite/RecurGLB/Discrete/1M
+	./timescales recurrence_globally --lbound 300 --ubound 1000 --duration 1000000 --name RecurGLB1000 --output-dir ${DIR}/fullsuite/RecurGLB/Discrete/1M
 
-	mkdir -p ${DIR}/fullsuite/RecurBQR/1M
-	./timescales recurrence_between_q_and_r --lbound 3 --ubound 10 --duration 1000000 --name RecurBQR10 --output-dir ${DIR}/fullsuite/RecurBQR/1M
-	./timescales recurrence_between_q_and_r --lbound 30 --ubound 100 --duration 1000000 --name RecurBQR100 --output-dir ${DIR}/fullsuite/RecurBQR/1M
-	./timescales recurrence_between_q_and_r --lbound 300 --ubound 1000 --duration 1000000 --name RecurBQR1000 --output-dir ${DIR}/fullsuite/RecurBQR/1M
+	mkdir -p ${DIR}/fullsuite/RecurBQR/Discrete/1M
+	./timescales recurrence_between_q_and_r --lbound 3 --ubound 10 --duration 1000000 --name RecurBQR10 --output-dir ${DIR}/fullsuite/RecurBQR/Discrete/1M
+	./timescales recurrence_between_q_and_r --lbound 30 --ubound 100 --duration 1000000 --name RecurBQR100 --output-dir ${DIR}/fullsuite/RecurBQR/Discrete/1M
+	./timescales recurrence_between_q_and_r --lbound 300 --ubound 1000 --duration 1000000 --name RecurBQR1000 --output-dir ${DIR}/fullsuite/RecurBQR/Discrete/1M
 
-	mkdir -p ${DIR}/fullsuite/RespondGLB/1M
-	./timescales response_globally --lbound 3 --ubound 10 --duration 1000000 --name RespondGLB10 --output-dir ${DIR}/fullsuite/RespondGLB/1M
-	./timescales response_globally --lbound 30 --ubound 100 --duration 1000000 --name RespondGLB100 --output-dir ${DIR}/fullsuite/RespondGLB/1M
-	./timescales response_globally --lbound 300 --ubound 1000 --duration 1000000 --name RespondGLB1000 --output-dir ${DIR}/fullsuite/RespondGLB/1M
+	mkdir -p ${DIR}/fullsuite/RespondGLB/Discrete/1M
+	./timescales response_globally --lbound 3 --ubound 10 --duration 1000000 --name RespondGLB10 --output-dir ${DIR}/fullsuite/RespondGLB/Discrete/1M
+	./timescales response_globally --lbound 30 --ubound 100 --duration 1000000 --name RespondGLB100 --output-dir ${DIR}/fullsuite/RespondGLB/Discrete/1M
+	./timescales response_globally --lbound 300 --ubound 1000 --duration 1000000 --name RespondGLB1000 --output-dir ${DIR}/fullsuite/RespondGLB/Discrete/1M
 
-	mkdir -p ${DIR}/fullsuite/RespondBQR/1M
-	./timescales response_between_q_and_r --lbound 3 --ubound 10 --duration 1000000 --name RespondBQR10 --output-dir ${DIR}/fullsuite/RespondBQR/1M
-	./timescales response_between_q_and_r --lbound 30 --ubound 100 --duration 1000000 --name RespondBQR100 --output-dir ${DIR}/fullsuite/RespondBQR/1M
-	./timescales response_between_q_and_r --lbound 300 --ubound 1000 --duration 1000000 --name RespondBQR1000 --output-dir ${DIR}/fullsuite/RespondBQR/1M
+	mkdir -p ${DIR}/fullsuite/RespondBQR/Discrete/1M
+	./timescales response_between_q_and_r --lbound 3 --ubound 10 --duration 1000000 --name RespondBQR10 --output-dir ${DIR}/fullsuite/RespondBQR/Discrete/1M
+	./timescales response_between_q_and_r --lbound 30 --ubound 100 --duration 1000000 --name RespondBQR100 --output-dir ${DIR}/fullsuite/RespondBQR/Discrete/1M
+	./timescales response_between_q_and_r --lbound 300 --ubound 1000 --duration 1000000 --name RespondBQR1000 --output-dir ${DIR}/fullsuite/RespondBQR/Discrete/1M
+
+full-1M-10:
+	mkdir -p ${DIR}/fullsuite/AbsentAQ/Dense10/1M
+	./timescales absence_after_q --ubound 10 --duration 1000000 --name AbsentAQ10 --condense 10 --output-dir ${DIR}/fullsuite/AbsentAQ/Dense10/1M
+	./timescales absence_after_q --ubound 100 --duration 1000000 --name AbsentAQ100 --condense 10 --output-dir ${DIR}/fullsuite/AbsentAQ/Dense10/1M
+	./timescales absence_after_q --ubound 1000 --duration 1000000 --name AbsentAQ1000 --condense 10 --output-dir ${DIR}/fullsuite/AbsentAQ/Dense10/1M
+
+	mkdir -p ${DIR}/fullsuite/AbsentBR/Dense10/1M
+	./timescales absence_before_r --ubound 10 --duration 1000000 --name AbsentBR10 --condense 10 --output-dir ${DIR}/fullsuite/AbsentBR/Dense10/1M
+	./timescales absence_before_r --ubound 100 --duration 1000000 --name AbsentBR100 --condense 10 --output-dir ${DIR}/fullsuite/AbsentBR/Dense10/1M
+	./timescales absence_before_r --ubound 1000 --duration 1000000 --name AbsentBR1000 --condense 10 --output-dir ${DIR}/fullsuite/AbsentBR/Dense10/1M
+
+	mkdir -p ${DIR}/fullsuite/AbsentBQR/Dense10/1M
+	./timescales absence_between_q_and_r --lbound 3 --ubound 10 --duration 1000000 --name AbsentBQR10 --condense 10 --output-dir ${DIR}/fullsuite/AbsentBQR/Dense10/1M
+	./timescales absence_between_q_and_r --lbound 30 --ubound 100 --duration 1000000 --name AbsentBQR100 --condense 10 --output-dir ${DIR}/fullsuite/AbsentBQR/Dense10/1M
+	./timescales absence_between_q_and_r --lbound 300 --ubound 1000 --duration 1000000 --name AbsentBQR1000 --condense 10 --output-dir ${DIR}/fullsuite/AbsentBQR/Dense10/1M
+
+	mkdir -p ${DIR}/fullsuite/AlwaysAQ/Dense10/1M
+	./timescales always_after_q --ubound 10 --duration 1000000 --name AlwaysAQ10 --condense 10 --output-dir ${DIR}/fullsuite/AlwaysAQ/Dense10/1M
+	./timescales always_after_q --ubound 100 --duration 1000000 --name AlwaysAQ100 --condense 10 --output-dir ${DIR}/fullsuite/AlwaysAQ/Dense10/1M
+	./timescales always_after_q --ubound 1000 --duration 1000000 --name AlwaysAQ1000 --condense 10 --output-dir ${DIR}/fullsuite/AlwaysAQ/Dense10/1M
+
+	mkdir -p ${DIR}/fullsuite/AlwaysBR/Dense10/1M
+	./timescales always_before_r --ubound 10 --duration 1000000 --name AlwaysBR10 --condense 10 --output-dir ${DIR}/fullsuite/AlwaysBR/Dense10/1M
+	./timescales always_before_r --ubound 100 --duration 1000000 --name AlwaysBR100 --condense 10 --output-dir ${DIR}/fullsuite/AlwaysBR/Dense10/1M
+	./timescales always_before_r --ubound 1000 --duration 1000000 --name AlwaysBR100 --condense 10 --output-dir ${DIR}/fullsuite/AlwaysBR/Dense10/1M
+
+	mkdir -p ${DIR}/fullsuite/AlwaysBQR/Dense10/1M
+	./timescales always_between_q_and_r --lbound 3 --ubound 10 --duration 1000000 --name AlwaysBQR10 --condense 10 --output-dir ${DIR}/fullsuite/AlwaysBQR/Dense10/1M
+	./timescales always_between_q_and_r --lbound 30 --ubound 100 --duration 1000000 --name AlwaysBQR100 --condense 10 --output-dir ${DIR}/fullsuite/AlwaysBQR/Dense10/1M
+	./timescales always_between_q_and_r --lbound 300 --ubound 1000 --duration 1000000 --name AlwaysBQR1000 --condense 10 --output-dir ${DIR}/fullsuite/AlwaysBQR/Dense10/1M
+
+	mkdir -p ${DIR}/fullsuite/RecurGLB/Dense10/1M
+	./timescales recurrence_globally --lbound 3 --ubound 10 --duration 1000000 --name RecurGLB10 --condense 10 --output-dir ${DIR}/fullsuite/RecurGLB/Dense10/1M
+	./timescales recurrence_globally --lbound 30 --ubound 100 --duration 1000000 --name RecurGLB100 --condense 10 --output-dir ${DIR}/fullsuite/RecurGLB/Dense10/1M
+	./timescales recurrence_globally --lbound 300 --ubound 1000 --duration 1000000 --name RecurGLB1000 --condense 10 --output-dir ${DIR}/fullsuite/RecurGLB/Dense10/1M
+
+	mkdir -p ${DIR}/fullsuite/RecurBQR/Dense10/1M
+	./timescales recurrence_between_q_and_r --lbound 3 --ubound 10 --duration 1000000 --name RecurBQR10 --condense 10 --output-dir ${DIR}/fullsuite/RecurBQR/Dense10/1M
+	./timescales recurrence_between_q_and_r --lbound 30 --ubound 100 --duration 1000000 --name RecurBQR100 --condense 10 --output-dir ${DIR}/fullsuite/RecurBQR/Dense10/1M
+	./timescales recurrence_between_q_and_r --lbound 300 --ubound 1000 --duration 1000000 --name RecurBQR1000 --condense 10 --output-dir ${DIR}/fullsuite/RecurBQR/Dense10/1M
+
+	mkdir -p ${DIR}/fullsuite/RespondGLB/Dense10/1M
+	./timescales response_globally --lbound 3 --ubound 10 --duration 1000000 --name RespondGLB10 --condense 10 --output-dir ${DIR}/fullsuite/RespondGLB/Dense10/1M
+	./timescales response_globally --lbound 30 --ubound 100 --duration 1000000 --name RespondGLB100 --condense 10 --output-dir ${DIR}/fullsuite/RespondGLB/Dense10/1M
+	./timescales response_globally --lbound 300 --ubound 1000 --duration 1000000 --name RespondGLB1000 --condense 10 --output-dir ${DIR}/fullsuite/RespondGLB/Dense10/1M
+
+	mkdir -p ${DIR}/fullsuite/RespondBQR/Dense10/1M
+	./timescales response_between_q_and_r --lbound 3 --ubound 10 --duration 1000000 --name RespondBQR10 --condense 10 --output-dir ${DIR}/fullsuite/RespondBQR/Dense10/1M
+	./timescales response_between_q_and_r --lbound 30 --ubound 100 --duration 1000000 --name RespondBQR100 --condense 10 --output-dir ${DIR}/fullsuite/RespondBQR/Dense10/1M
+	./timescales response_between_q_and_r --lbound 300 --ubound 1000 --duration 1000000 --name RespondBQR1000 --condense 10 --output-dir ${DIR}/fullsuite/RespondBQR/Dense10/1M
+
+full-1M-100:
+	mkdir -p ${DIR}/fullsuite/AbsentAQ/Dense100/1M
+	./timescales absence_after_q --ubound 10 --duration 100000 --name AbsentAQ10 --condense 100 --output-dir ${DIR}/fullsuite/AbsentAQ/Dense100/1M
+	./timescales absence_after_q --ubound 100 --duration 100000 --name AbsentAQ100 --condense 100 --output-dir ${DIR}/fullsuite/AbsentAQ/Dense100/1M
+	./timescales absence_after_q --ubound 1000 --duration 100000 --name AbsentAQ1000 --condense 100 --output-dir ${DIR}/fullsuite/AbsentAQ/Dense100/1M
+
+	mkdir -p ${DIR}/fullsuite/AbsentBR/Dense100/1M
+	./timescales absence_before_r --ubound 10 --duration 100000 --name AbsentBR10 --condense 100 --output-dir ${DIR}/fullsuite/AbsentBR/Dense100/1M
+	./timescales absence_before_r --ubound 100 --duration 100000 --name AbsentBR100 --condense 100 --output-dir ${DIR}/fullsuite/AbsentBR/Dense100/1M
+	./timescales absence_before_r --ubound 1000 --duration 100000 --name AbsentBR1000 --condense 100 --output-dir ${DIR}/fullsuite/AbsentBR/Dense100/1M
+
+	mkdir -p ${DIR}/fullsuite/AbsentBQR/Dense100/1M
+	./timescales absence_between_q_and_r --lbound 3 --ubound 10 --duration 100000 --name AbsentBQR10 --condense 100 --output-dir ${DIR}/fullsuite/AbsentBQR/Dense100/1M
+	./timescales absence_between_q_and_r --lbound 30 --ubound 100 --duration 100000 --name AbsentBQR100 --condense 100 --output-dir ${DIR}/fullsuite/AbsentBQR/Dense100/1M
+	./timescales absence_between_q_and_r --lbound 300 --ubound 1000 --duration 100000 --name AbsentBQR1000 --condense 100 --output-dir ${DIR}/fullsuite/AbsentBQR/Dense100/1M
+
+	mkdir -p ${DIR}/fullsuite/AlwaysAQ/Dense100/1M
+	./timescales always_after_q --ubound 10 --duration 100000 --name AlwaysAQ10 --condense 100 --output-dir ${DIR}/fullsuite/AlwaysAQ/Dense100/1M
+	./timescales always_after_q --ubound 100 --duration 100000 --name AlwaysAQ100 --condense 100 --output-dir ${DIR}/fullsuite/AlwaysAQ/Dense100/1M
+	./timescales always_after_q --ubound 1000 --duration 100000 --name AlwaysAQ1000 --condense 100 --output-dir ${DIR}/fullsuite/AlwaysAQ/Dense100/1M
+
+	mkdir -p ${DIR}/fullsuite/AlwaysBR/Dense100/1M
+	./timescales always_before_r --ubound 10 --duration 100000 --name AlwaysBR10 --condense 100 --output-dir ${DIR}/fullsuite/AlwaysBR/Dense100/1M
+	./timescales always_before_r --ubound 100 --duration 100000 --name AlwaysBR100 --condense 100 --output-dir ${DIR}/fullsuite/AlwaysBR/Dense100/1M
+	./timescales always_before_r --ubound 1000 --duration 100000 --name AlwaysBR100 --condense 100 --output-dir ${DIR}/fullsuite/AlwaysBR/Dense100/1M
+
+	mkdir -p ${DIR}/fullsuite/AlwaysBQR/Dense100/1M
+	./timescales always_between_q_and_r --lbound 3 --ubound 10 --duration 1000000 --name AlwaysBQR10 --condense 100 --output-dir ${DIR}/fullsuite/AlwaysBQR/Dense100/1M
+	./timescales always_between_q_and_r --lbound 30 --ubound 100 --duration 1000000 --name AlwaysBQR100 --condense 100 --output-dir ${DIR}/fullsuite/AlwaysBQR/Dense100/1M
+	./timescales always_between_q_and_r --lbound 300 --ubound 1000 --duration 1000000 --name AlwaysBQR1000 --condense 100 --output-dir ${DIR}/fullsuite/AlwaysBQR/Dense100/1M
+
+	mkdir -p ${DIR}/fullsuite/RecurGLB/Dense100/1M
+	./timescales recurrence_globally --lbound 3 --ubound 10 --duration 1000000 --name RecurGLB10 --condense 100 --output-dir ${DIR}/fullsuite/RecurGLB/Dense100/1M
+	./timescales recurrence_globally --lbound 30 --ubound 100 --duration 1000000 --name RecurGLB100 --condense 100 --output-dir ${DIR}/fullsuite/RecurGLB/Dense100/1M
+	./timescales recurrence_globally --lbound 300 --ubound 1000 --duration 1000000 --name RecurGLB1000 --condense 100 --output-dir ${DIR}/fullsuite/RecurGLB/Dense100/1M
+
+	mkdir -p ${DIR}/fullsuite/RecurBQR/Dense100/1M
+	./timescales recurrence_between_q_and_r --lbound 3 --ubound 10 --duration 1000000 --name RecurBQR10 --condense 100 --output-dir ${DIR}/fullsuite/RecurBQR/Dense100/1M
+	./timescales recurrence_between_q_and_r --lbound 30 --ubound 100 --duration 1000000 --name RecurBQR100 --condense 100 --output-dir ${DIR}/fullsuite/RecurBQR/Dense100/1M
+	./timescales recurrence_between_q_and_r --lbound 300 --ubound 1000 --duration 1000000 --name RecurBQR1000 --condense 100 --output-dir ${DIR}/fullsuite/RecurBQR/Dense100/1M
+
+	mkdir -p ${DIR}/fullsuite/RespondGLB/Dense100/1M
+	./timescales response_globally --lbound 3 --ubound 10 --duration 1000000 --name RespondGLB10 --condense 100 --output-dir ${DIR}/fullsuite/RespondGLB/Dense100/1M
+	./timescales response_globally --lbound 30 --ubound 100 --duration 1000000 --name RespondGLB100 --condense 100 --output-dir ${DIR}/fullsuite/RespondGLB/Dense100/1M
+	./timescales response_globally --lbound 300 --ubound 1000 --duration 1000000 --name RespondGLB1000 --condense 100 --output-dir ${DIR}/fullsuite/RespondGLB/Dense100/1M
+
+	mkdir -p ${DIR}/fullsuite/RespondBQR/Dense100/1M
+	./timescales response_between_q_and_r --lbound 3 --ubound 10 --duration 1000000 --name RespondBQR10 --condense 100 --output-dir ${DIR}/fullsuite/RespondBQR/Dense100/1M
+	./timescales response_between_q_and_r --lbound 30 --ubound 100 --duration 1000000 --name RespondBQR100 --condense 100 --output-dir ${DIR}/fullsuite/RespondBQR/Dense100/1M
+	./timescales response_between_q_and_r --lbound 300 --ubound 1000 --duration 1000000 --name RespondBQR1000 --condense 100 --output-dir ${DIR}/fullsuite/RespondBQR/Dense100/1M
+
 
 clean:
 	rm -rf ${DIR}/smallsuite ${DIR}/largesuite ${DIR}/fullsuite
