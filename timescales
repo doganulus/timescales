@@ -25,10 +25,7 @@ def main(argv):
     recurrence_between_q_and_r        UBOUND MIN_RECUR MAX_RECUR
 
     response_globally          LBOUND UBOUND
-    response_between_q_and_r   LBOUND UBOUND MIN_RECUR MAX_RECUR
-
-    challenge_pandq            LBOUND UBOUND
-    challenge_delay            LBOUND UBOUND''')
+    response_between_q_and_r   LBOUND UBOUND MIN_RECUR MAX_RECUR''')
 
     parser.add_argument('-d','--duration', 
         help='''define the approximate duration for the trace''',
@@ -68,11 +65,11 @@ def main(argv):
         metavar='N')
     parser.add_argument('--failing-end', 
         help='''disable appending a sequence to the trace to make the spec fail (default: false)''',
-        action="store_false",
+        action="store_true",
         default=False)
     parser.add_argument('--future', 
         help='''generate a future MTL formula (default: past)''',
-        action="store_false",
+        action="store_true",
         default=False)
     parser.add_argument('--output-dir', 
         help='''use existing DIR as the directory to write output files in (default: current)''',
@@ -93,7 +90,7 @@ def main(argv):
         )
 
     if args.future:
-        timescales.write_spec(past_spec, filename=args.name, directory=args.output_dir)
+        timescales.write_spec(future_spec, filename=args.name, directory=args.output_dir)
     else:
         timescales.write_spec(past_spec, filename=args.name, directory=args.output_dir)
 

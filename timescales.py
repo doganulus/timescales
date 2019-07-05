@@ -9,9 +9,6 @@ from properties.bounded_universality import *
 from properties.bounded_recurrence import *
 from properties.bounded_response import *
 
-from properties.challenge_pandq import *
-from properties.challenge_delay import *
-
 def eliminate_stuttering(rows, cap=None):
 
 	if cap == None:
@@ -100,16 +97,6 @@ def generate(property, lower_bound, upper_bound, min_recur, max_recur, duration,
 		past_spec = bounded_response_between_q_and_r.generate_past_formula(lower_bound, upper_bound)
 		future_spec = bounded_response_between_q_and_r.generate_future_formula(lower_bound, upper_bound)
 		rows = bounded_response_between_q_and_r.generate_trace(lower_bound, upper_bound, min_recur, max_recur, duration, failing_end)
-
-	elif property == "challenge_pandq":
-		past_spec = challenge_pandq.generate_past_formula(lower_bound, upper_bound)
-		future_spec = challenge_pandq.generate_future_formula(lower_bound, upper_bound)
-		rows = challenge_pandq.generate_trace(lower_bound, upper_bound, duration, failing_end)
-
-	elif property == "challenge_delay":
-		past_spec = challenge_delay.generate_past_formula(lower_bound, upper_bound)
-		future_spec = challenge_delay.generate_future_formula(lower_bound, upper_bound)
-		rows = challenge_delay.generate_trace(lower_bound, upper_bound, duration, failing_end)
 
 	else:
 		raise ValueError("Unknown property. Please see the help for supported properties.")
