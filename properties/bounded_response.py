@@ -8,7 +8,7 @@ class bounded_response_globally:
 
 	@staticmethod
 	def generate_past_formula(lower_bound, upper_bound):
-		return "historically((s -> once[{a}:{b}] p) and not( not(s) since[:{b}] p))".format(a=lower_bound, b=upper_bound)
+		return "historically((s -> once[{a}:{b}] p) and not( not(s) since[{b}:] p))".format(a=lower_bound, b=upper_bound)
 
 	@staticmethod
 	def generate_future_formula(lower_bound, upper_bound):
@@ -50,7 +50,7 @@ class bounded_response_between_q_and_r:
 
 	@staticmethod
 	def generate_past_formula(lower_bound, upper_bound):
-		return "historically((r && !q && once q) -> ( ((s -> once[{a}:{b}] p) and not( not(s) since[:{b}] p)) since q))".format(a=lower_bound, b=upper_bound)
+		return "historically((r && !q && once q) -> ( ((s -> once[{a}:{b}] p) and not( not(s) since[{b}:] p)) since q))".format(a=lower_bound, b=upper_bound)
 
 	@staticmethod
 	def generate_future_formula(lower_bound, upper_bound):
