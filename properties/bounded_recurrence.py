@@ -57,7 +57,7 @@ class bounded_recurrence_between_q_and_r:
 
 	@staticmethod
 	def generate_future_formula(upper_bound):
-		return "always((q && !r && eventually r) -> ((once[:{b}](p or q)) until r))".format(b=upper_bound)
+		return "always((q && !r && eventually r) -> ((eventually[:{b}](p or r)) until r))".format(b=upper_bound)
 
 	@staticmethod
 	def generate_trace(upper_bound, duration=1000, min_recur=1, max_recur=7, failing_end=True):

@@ -1,3 +1,3 @@
 ---
 name : "RespondBQR"
-pattern : "historically((r && !q && once q) -> ( ((s -> once[3:10] p) and not( not(s) since[:10] p)) since q))"
+pattern : "historically((r && !q && once q) -> ( ((s -> once[3:10] p) and not( not(s) since[10:] p)) since q))"

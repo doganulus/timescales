@@ -28,27 +28,27 @@ def main(argv):
     response_between_q_and_r   LBOUND UBOUND MIN_RECUR MAX_RECUR''')
 
     parser.add_argument('-d','--duration', 
-        help='''define the approximate duration for the trace''',
+        help='''define the approximate duration for the trace (default:1000)''',
         default = 1000,
         type=int,
         metavar='N')
     parser.add_argument('-l', '--lbound', 
-        help='''define the lower bound for the property if available for the property''',
+        help='''define the lower bound for the property if available for the property (default:0)''',
         default = 0,
         type=int,
         metavar='N')
     parser.add_argument('-u', '--ubound', 
-        help='''define the upper bound for the property if available for the property''',
+        help='''define the upper bound for the property if available for the property (default:100)''',
         default = 100,
         type=int,
         metavar='N')
     parser.add_argument('--min-recur', 
-        help='''define the minimum number of recurrence in the trace if available for the property''',
+        help='''define the minimum number of recurrence in the trace if available for the property (default:1)''',
         default = 1,
         type=int,
         metavar='N')
     parser.add_argument('--max-recur', 
-        help='''define the maximum number of recurrence in the trace if available for the property''',
+        help='''define the maximum number of recurrence in the trace if available for the property (default:7)''',
         default = 7,
         type=int,
         metavar='N')
