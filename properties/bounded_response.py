@@ -54,7 +54,7 @@ class bounded_response_between_q_and_r:
 
 	@staticmethod
 	def generate_future_formula(lower_bound, upper_bound):
-		return "always((q && !r && eventually r) -> (p -> (!r until[{a}:{b}] (s and !r))) until r)".format(a=lower_bound, b=upper_bound)
+		return "always((q && !r && eventually r) -> (p -> (!r until[{a}:{b}] (s and !r)) until r))".format(a=lower_bound, b=upper_bound)
 
 	@staticmethod
 	def generate_trace(lower_bound, upper_bound, min_recur=1, max_recur=7, duration=1000, failing_end=True):
