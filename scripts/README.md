@@ -14,23 +14,18 @@ Test scripts in this directory use the past MTL monitoring package python-monito
        git clone https://github.com/doganulus/timescales.git
        cd timescales
 
-3)  Test past properties
+3) Test past properties (All properties should pass)
 
         make small
         python scripts/test_past_by_python_monitors.py
 
-All properties should pass.
-
-4) Test failing-end feature
+4) Test failing-end feature (All properties should fail)
 
        make small FLAGS=--failing-end
        python scripts/test_past_by_python_monitors.py
 
-All properties should fail.
-
-5) Test future properties over reversed traces
+5) Test future properties over reversed traces (All properties should pass)
 
        make small FLAGS=--future
        python scripts/test_future_by_python_monitors.py
 
-All properties should pass.
