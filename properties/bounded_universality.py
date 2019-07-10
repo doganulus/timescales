@@ -58,7 +58,7 @@ class bounded_universality_before_r:
 
 	@staticmethod
 	def generate_future_formula(upper_bound):
-		return "eventually[:{b}](r) -> (p until r)".format(b=upper_bound)
+		return "always((eventually[:{b}](r)) -> (p until r))".format(b=upper_bound)
 
 	@staticmethod
 	def generate_trace(upper_bound, duration=1000, failing_end=True):

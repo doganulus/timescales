@@ -50,7 +50,7 @@ class bounded_absence_before_r:
 
 	@staticmethod
 	def generate_future_formula(upper_bound):
-		return "always(eventually[:{b}](r) -> (not p until r))".format(b=upper_bound)
+		return "always((eventually[:{b}](r)) -> ((not p) until r))".format(b=upper_bound)
 
 	@staticmethod
 	def generate_past_formula(upper_bound):

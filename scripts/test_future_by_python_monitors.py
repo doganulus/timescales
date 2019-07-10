@@ -31,12 +31,8 @@ for tracefile in Path('./smallsuite').glob('**/*.csv'):
         for row in reversed(list(trace_reader)):
             rowd = dict([(k, int(v))for k, v in row.items()])
             output = monitor.update(**rowd)
-            if not output:            
-                passed = False
-                print("Error at {}".format(rowd['time']))
-                break
     
-    if passed:
+    if output:
         print("Property {} passed.".format(tracefile.stem))
     else:
         print("Property {} failed.".format(tracefile.stem))
