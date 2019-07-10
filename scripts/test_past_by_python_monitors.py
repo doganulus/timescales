@@ -19,8 +19,6 @@ for tracefile in Path('./smallsuite').glob('**/*.csv'):
     pattern = re.sub(':', ',', pattern)
     pattern = re.sub('historically', 'always', pattern)
     #
-    #
-    #
     monitor = mtl.monitor(pattern)
     passed = True
 
