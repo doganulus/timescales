@@ -1,6 +1,6 @@
 ## timescales
 
-`timescales` is a benchmark generator for Metric Temporal Logic (MTL) monitoring tools. It is originally developed for the monitoring tool [Reelay](https://github.com/doganulus/reelay) but distributed standalone. It generates an MTL specification (as standard YAML file) and an input trace (as standard CSV file) that satisfies the formula at every time point. For the benchmark generation, a set of predefined timed properties are available through the interface. Please see the help and documentation for more information.
+`timescales` is a benchmark generator for Metric Temporal Logic (MTL) monitoring tools. It is originally developed for the monitoring tool [Reelay](https://github.com/doganulus/reelay) but distributed standalone. It generates an MTL specification (as a standard YAML file) and an input trace (as a standard CSV file) that satisfies the formula at every time point. For the benchmark generation, a set of predefined timed properties are available through the interface. Please see the help and documentation for more information.
 
 The purpose of these benchmarks is to measure the performance and scalability of MTL monitoring tools with respect to large timing bounds in the specification over some typical cases. Ideally, the performance of real-time monitoring tools should remain constant when the base time unit has changed. This is due to that different (parts of) systems use different time scales up to orders of magnitude and the specification of slower systems contain large timing bounds.
 
