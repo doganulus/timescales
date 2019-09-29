@@ -6,19 +6,19 @@ all: small
 small:
 	mkdir -p ${DIR}/smallsuite
 
-	./timescales absence_after_q --ubound 10 --duration 10000 --name AbsentAQ --output-dir ${DIR}/smallsuite ${FLAGS}
-	./timescales absence_before_r --ubound 10 --duration 10000 --name AbsentBR --output-dir ${DIR}/smallsuite ${FLAGS}
-	./timescales absence_between_q_and_r --lbound 3 --ubound 10 --duration 10000 --name AbsentBQR --output-dir ${DIR}/smallsuite ${FLAGS}
+	./timescales absence_after_q --ubound 10 --duration 10000 --name AbsentAQ --output-dir ${DIR}/smallsuite ${FLAGS} --failing-end
+	./timescales absence_before_r --ubound 10 --duration 10000 --name AbsentBR --output-dir ${DIR}/smallsuite ${FLAGS} --failing-end
+	./timescales absence_between_q_and_r --lbound 3 --ubound 10 --duration 10000 --name AbsentBQR --output-dir ${DIR}/smallsuite ${FLAGS} --failing-end
 
-	./timescales always_after_q --ubound 10 --duration 10000 --name AlwaysAQ --output-dir ${DIR}/smallsuite ${FLAGS}
-	./timescales always_before_r --ubound 10 --duration 10000 --name AlwaysBR --output-dir ${DIR}/smallsuite ${FLAGS}
-	./timescales always_between_q_and_r --lbound 3 --ubound 10 --duration 10000 --name AlwaysBQR --output-dir ${DIR}/smallsuite ${FLAGS}
+	./timescales always_after_q --ubound 10 --duration 10000 --name AlwaysAQ --output-dir ${DIR}/smallsuite ${FLAGS} --failing-end
+	./timescales always_before_r --ubound 10 --duration 10000 --name AlwaysBR --output-dir ${DIR}/smallsuite ${FLAGS} --failing-end
+	./timescales always_between_q_and_r --lbound 3 --ubound 10 --duration 10000 --name AlwaysBQR --output-dir ${DIR}/smallsuite ${FLAGS} --failing-end
 
-	./timescales recurrence_globally --lbound 3 --ubound 10 --duration 10000 --name RecurGLB --output-dir ${DIR}/smallsuite ${FLAGS}
-	./timescales recurrence_between_q_and_r --lbound 3 --ubound 10 --duration 10000 --name RecurBQR --output-dir ${DIR}/smallsuite ${FLAGS}
+	./timescales recurrence_globally --lbound 3 --ubound 10 --duration 10000 --name RecurGLB --output-dir ${DIR}/smallsuite ${FLAGS} --failing-end
+	./timescales recurrence_between_q_and_r --lbound 3 --ubound 10 --duration 10000 --name RecurBQR --output-dir ${DIR}/smallsuite ${FLAGS} --failing-end
 
-	./timescales response_globally --lbound 3 --ubound 10 --duration 10000 --name RespondGLB --output-dir ${DIR}/smallsuite ${FLAGS}
-	./timescales response_between_q_and_r --lbound 3 --ubound 10 --duration 10000 --name RespondBQR --output-dir ${DIR}/smallsuite ${FLAGS}
+	./timescales response_globally --lbound 3 --ubound 10 --duration 10000 --name RespondGLB --output-dir ${DIR}/smallsuite ${FLAGS} --failing-end
+	./timescales response_between_q_and_r --lbound 3 --ubound 10 --duration 10000 --name RespondBQR --output-dir ${DIR}/smallsuite ${FLAGS} --failing-end
 
 large:
 	mkdir -p ${DIR}/largesuite/AbsentAQ	
@@ -187,9 +187,9 @@ full-100K-100:
 	./timescales absence_before_r --ubound 1000 --duration 100000 --name AbsentBR1000 --condense 100 --output-dir ${DIR}/fullsuite/AbsentBR/Dense100/100K ${FLAGS}
 
 	mkdir -p ${DIR}/fullsuite/AbsentBQR/Dense100/100K 
-	./timescales absence_between_q_and_r --lbound 3 --ubound 10 --duration 1000000 --name AbsentBQR10 --condense 100 --output-dir ${DIR}/fullsuite/AbsentBQR/Dense100/100K ${FLAGS}
-	./timescales absence_between_q_and_r --lbound 30 --ubound 100 --duration 1000000 --name AbsentBQR100 --condense 100 --output-dir ${DIR}/fullsuite/AbsentBQR/Dense100/100K ${FLAGS}
-	./timescales absence_between_q_and_r --lbound 300 --ubound 1000 --duration 1000000 --name AbsentBQR1000 --condense 100 --output-dir ${DIR}/fullsuite/AbsentBQR/Dense100/100K ${FLAGS}
+	./timescales absence_between_q_and_r --lbound 3 --ubound 10 --duration 100000 --name AbsentBQR10 --condense 100 --output-dir ${DIR}/fullsuite/AbsentBQR/Dense100/100K ${FLAGS}
+	./timescales absence_between_q_and_r --lbound 30 --ubound 100 --duration 100000 --name AbsentBQR100 --condense 100 --output-dir ${DIR}/fullsuite/AbsentBQR/Dense100/100K ${FLAGS}
+	./timescales absence_between_q_and_r --lbound 300 --ubound 1000 --duration 100000 --name AbsentBQR1000 --condense 100 --output-dir ${DIR}/fullsuite/AbsentBQR/Dense100/100K ${FLAGS}
 
 	mkdir -p ${DIR}/fullsuite/AlwaysAQ/Dense100/100K
 	./timescales always_after_q --ubound 10 --duration 100000 --name AlwaysAQ10 --condense 100 --output-dir ${DIR}/fullsuite/AlwaysAQ/Dense100/100K ${FLAGS}
