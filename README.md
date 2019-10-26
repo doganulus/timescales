@@ -47,3 +47,7 @@ The full interface of the benchmark generator `timescales` is as follows:
       --failing-end       disable appending a sequence to the trace to make the spec fail (default: false)
       --future            generate a future MTL formula (default: past)
       --output-dir DIR    use existing DIR as the directory to write output files in (default: current)
+
+## cite
+
+Dogan Ulus. "Timescales: A Benchmark Generator for MTL Monitoring Tools". In: Proceedings of the Conference on Runtime Verification (RV). 2019.
