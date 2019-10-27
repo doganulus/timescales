@@ -301,7 +301,7 @@ full-1M-10:
 	mkdir -p ${DIR}/fullsuite/AlwaysBR/Dense10/1M 
 	./timescales always_before_r --ubound 10 --duration 1000000 --name AlwaysBR10 --condense 10 --output-dir ${DIR}/fullsuite/AlwaysBR/Dense10/1M ${FLAGS}
 	./timescales always_before_r --ubound 100 --duration 1000000 --name AlwaysBR100 --condense 10 --output-dir ${DIR}/fullsuite/AlwaysBR/Dense10/1M ${FLAGS}
-	./timescales always_before_r --ubound 1000 --duration 1000000 --name AlwaysBR100 --condense 10 --output-dir ${DIR}/fullsuite/AlwaysBR/Dense10/1M ${FLAGS}
+	./timescales always_before_r --ubound 1000 --duration 1000000 --name AlwaysBR1000 --condense 10 --output-dir ${DIR}/fullsuite/AlwaysBR/Dense10/1M ${FLAGS}
 
 	mkdir -p ${DIR}/fullsuite/AlwaysBQR/Dense10/1M
 	./timescales always_between_q_and_r --lbound 3 --ubound 10 --duration 1000000 --name AlwaysBQR10 --condense 10 --output-dir ${DIR}/fullsuite/AlwaysBQR/Dense10/1M ${FLAGS}
