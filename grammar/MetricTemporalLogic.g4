@@ -28,11 +28,9 @@ expr: child = atom                                      # Atomic
 	| '(' child = expr ')'                              # Grouping
     ;
 
-atom:	  name  = IDENTIFIER							# NamedAtom
-	| '$' index = NUMBER								# PositionalProp
-	| '$' index = NUMBER op = REL_OP constant = NUMBER	# PositionalPred;
+atom: '{' IDENTIFIER '}'  								# Atom
 
-timeBound : '[' (l = NUMBER)? ':' (u = NUMBER)? (scale = TIMESCALE)? ']';
+timeBound : '[' (l = NUMBER)? ':' (u = NUMBER)? ']';
 
 NOT 		: '!'  	| 'not' 	| 'NOT';
 LOR			: '||' 	| 'or' 		| 'OR';
@@ -50,13 +48,5 @@ ALWAYS_F 	: 'G' 	| 'always' | 'ALWAYS' | 'globally' | 'GLOBALLY';
 UNTIL 		: 'U' 	| 'until' | 'UNTIL';
 
 IDENTIFIER: [_a-zA-Z][_a-zA-Z0-9]*;
-
-REL_OP: '<' | '<=' | '>' | '>=';
-
-TIMESCALE: 'h' | 'm' | 's' | 'ms' | 'us' | 'ns';
-
-NUMBER: DIGITS ('.' DIGITS)?;
-
-DIGITS: [0-9]+;
 
 WS: [ \r\n\t]+ -> channel (HIDDEN);
