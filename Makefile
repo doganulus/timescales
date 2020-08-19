@@ -44,7 +44,7 @@ large:
 	mkdir -p ${DIR}/largesuite/AlwaysBR
 	./timescales always_before_r --ubound 10 --duration 1000000 --name AlwaysBR10 --output-dir ${DIR}/largesuite/AlwaysBR ${FLAGS}
 	./timescales always_before_r --ubound 100 --duration 1000000 --name AlwaysBR100 --output-dir ${DIR}/largesuite/AlwaysBR ${FLAGS}
-	./timescales always_before_r --ubound 1000 --duration 1000000 --name AlwaysBR100 --output-dir ${DIR}/largesuite/AlwaysBR ${FLAGS}
+	./timescales always_before_r --ubound 1000 --duration 1000000 --name AlwaysBR1000 --output-dir ${DIR}/largesuite/AlwaysBR ${FLAGS}
 
 	mkdir -p ${DIR}/largesuite/AlwaysBQR
 	./timescales always_between_q_and_r --lbound 3 --ubound 10 --duration 1000000 --name AlwaysBQR10 --output-dir ${DIR}/largesuite/AlwaysBQR ${FLAGS}
@@ -97,7 +97,7 @@ full-100K:
 	mkdir -p ${DIR}/fullsuite/AlwaysBR/Discrete/100K 
 	./timescales always_before_r --ubound 10 --duration 100000 --name AlwaysBR10  --output-dir ${DIR}/fullsuite/AlwaysBR/Discrete/100K ${FLAGS}
 	./timescales always_before_r --ubound 100 --duration 100000 --name AlwaysBR100  --output-dir ${DIR}/fullsuite/AlwaysBR/Discrete/100K ${FLAGS}
-	./timescales always_before_r --ubound 1000 --duration 100000 --name AlwaysBR100  --output-dir ${DIR}/fullsuite/AlwaysBR/Discrete/100K ${FLAGS}
+	./timescales always_before_r --ubound 1000 --duration 100000 --name AlwaysBR1000  --output-dir ${DIR}/fullsuite/AlwaysBR/Discrete/100K ${FLAGS}
 
 	mkdir -p ${DIR}/fullsuite/AlwaysBQR/Discrete/100K
 	./timescales always_between_q_and_r --lbound 3 --ubound 10 --duration 100000 --name AlwaysBQR10 --output-dir ${DIR}/fullsuite/AlwaysBQR/Discrete/100K ${FLAGS}
@@ -148,7 +148,7 @@ full-100K-10:
 	mkdir -p ${DIR}/fullsuite/AlwaysBR/Dense10/100K
 	./timescales always_before_r --ubound 10 --duration 100000 --name AlwaysBR10 --condense 10 --output-dir ${DIR}/fullsuite/AlwaysBR/Dense10/100K ${FLAGS}
 	./timescales always_before_r --ubound 100 --duration 100000 --name AlwaysBR100 --condense 10 --output-dir ${DIR}/fullsuite/AlwaysBR/Dense10/100K ${FLAGS}
-	./timescales always_before_r --ubound 1000 --duration 100000 --name AlwaysBR100 --condense 10 --output-dir ${DIR}/fullsuite/AlwaysBR/Dense10/100K ${FLAGS}
+	./timescales always_before_r --ubound 1000 --duration 100000 --name AlwaysBR1000 --condense 10 --output-dir ${DIR}/fullsuite/AlwaysBR/Dense10/100K ${FLAGS}
 
 	mkdir -p ${DIR}/fullsuite/AlwaysBQR/Dense10/100K
 	./timescales always_between_q_and_r --lbound 3 --ubound 10 --duration 100000 --name AlwaysBQR10 --condense 10 --output-dir ${DIR}/fullsuite/AlwaysBQR/Dense10/100K ${FLAGS}
@@ -199,7 +199,7 @@ full-100K-100:
 	mkdir -p ${DIR}/fullsuite/AlwaysBR/Dense100/100K 
 	./timescales always_before_r --ubound 10 --duration 100000 --name AlwaysBR10 --condense 100 --output-dir ${DIR}/fullsuite/AlwaysBR/Dense100/100K ${FLAGS}
 	./timescales always_before_r --ubound 100 --duration 100000 --name AlwaysBR100 --condense 100 --output-dir ${DIR}/fullsuite/AlwaysBR/Dense100/100K ${FLAGS}
-	./timescales always_before_r --ubound 1000 --duration 100000 --name AlwaysBR100 --condense 100 --output-dir ${DIR}/fullsuite/AlwaysBR/Dense100/100K ${FLAGS}
+	./timescales always_before_r --ubound 1000 --duration 100000 --name AlwaysBR1000 --condense 100 --output-dir ${DIR}/fullsuite/AlwaysBR/Dense100/100K ${FLAGS}
 
 	mkdir -p ${DIR}/fullsuite/AlwaysBQR/Dense100/100K 
 	./timescales always_between_q_and_r --lbound 3 --ubound 10 --duration 100000 --name AlwaysBQR10 --condense 100 --output-dir ${DIR}/fullsuite/AlwaysBQR/Dense100/100K ${FLAGS}
@@ -352,7 +352,7 @@ full-1M-100:
 	mkdir -p ${DIR}/fullsuite/AlwaysBR/Dense100/1M
 	./timescales always_before_r --ubound 10 --duration 1000000 --name AlwaysBR10 --condense 100 --output-dir ${DIR}/fullsuite/AlwaysBR/Dense100/1M ${FLAGS}
 	./timescales always_before_r --ubound 100 --duration 1000000 --name AlwaysBR100 --condense 100 --output-dir ${DIR}/fullsuite/AlwaysBR/Dense100/1M ${FLAGS}
-	./timescales always_before_r --ubound 1000 --duration 1000000 --name AlwaysBR100 --condense 100 --output-dir ${DIR}/fullsuite/AlwaysBR/Dense100/1M ${FLAGS}
+	./timescales always_before_r --ubound 1000 --duration 1000000 --name AlwaysBR1000 --condense 100 --output-dir ${DIR}/fullsuite/AlwaysBR/Dense100/1M ${FLAGS}
 
 	mkdir -p ${DIR}/fullsuite/AlwaysBQR/Dense100/1M 
 	./timescales always_between_q_and_r --lbound 3 --ubound 10 --duration 1000000 --name AlwaysBQR10 --condense 100 --output-dir ${DIR}/fullsuite/AlwaysBQR/Dense100/1M ${FLAGS}
