@@ -53,12 +53,10 @@ def main(argv):
                         default=7,
                         type=int,
                         metavar='N')
-
     parser.add_argument('--name',
                         help='''define the name of specification (default: spec)''',
                         default="spec",
                         metavar='STRING')
-
     parser.add_argument('--condense',
                         help='''define the maximum amount of condensation in the generated trace (default: 0)''',
                         default=0,
@@ -82,6 +80,13 @@ def main(argv):
                         metavar='FORMAT')
 
     args = parser.parse_args()
+
+    assert(args.duration > 1)
+    assert(0 <= args.lbound <= args.ubound)
+    assert(0 <= args.min_recur <= args.max_recur)
+    assert(args.condense == -1 or args.condense == 0 or
+           args.condense == 1 or args.condense >= 2)
+    assert(not(args.format == 'csv' and args.condense == 1))
 
     past_spec, future_spec, rows = timescales.generate(
         property=args.property,

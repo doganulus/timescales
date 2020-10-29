@@ -27,6 +27,21 @@ def eliminate_stuttering(rows, cap=None):
     return nrows[1:]
 
 
+def forward_persistance(rows):
+
+    prev = rows[0]
+    nrows = [rows[0]]
+
+    for row in rows[1:]:
+        if (row.data != prev.data):
+            nrows += [row]
+        else:
+            nrows += [None]
+        prev = row
+
+    return nrows
+
+
 def forward_eliminate_stuttering(rows, cap=None):
 
     if cap == None:
@@ -73,10 +88,14 @@ def write_trace(rows, filename, directory="", format='csv'):
 
         with open(os.path.join(directory, '{filename}.jsonl'.format(filename=filename)), 'a') as f:
             for row in rows:
-                obj = dict(time=row.time)
-                obj.update(row.data._asdict())
-                json.dump(obj, f)
-                f.write('\n')
+                if(row != None):
+                    obj = dict(time=row.time)
+                    obj.update(row.data._asdict())
+                    json.dump(obj, f)
+                    f.write('\n')
+                else:
+                    json.dump(dict(), f)
+                    f.write('\n')
 
     else:
         raise ValueError(
@@ -171,7 +190,17 @@ def generate(property, lower_bound, upper_bound, min_recur, max_recur, duration,
         raise ValueError(
             "Unknown property. Please see the help for supported properties.")
 
-    rows = rows if limit_stutter == 0 else forward_eliminate_stuttering(
-        rows, limit_stutter)
+    if limit_stutter == -1:
+        rows = forward_eliminate_stuttering(rows, None)  # Maximum condensation
+    elif limit_stutter == 0:
+        pass  # No condensation
+    elif limit_stutter == 1:
+        rows = forward_persistance(rows)  # Minimum condensation
+    elif limit_stutter >= 2:
+        rows = forward_eliminate_stuttering(
+            rows, limit_stutter)  # Limited condensation
+    else:
+        raise ValueError(
+            "Illegal value for condensation. Must be -1, 0, 1, or 2+")
 
     return past_spec, future_spec, rows
