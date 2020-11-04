@@ -1,3 +1,0 @@
----
-name : "AbsentBR"
-pattern : "historically(r -> (historically[:10](not p)))"

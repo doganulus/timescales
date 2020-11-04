@@ -1,0 +1,19 @@
+namespace Timescales;
+
+struct NullableBool {
+  value:bool;
+}
+
+struct NullableInt64 {
+  value:int64;
+}
+
+table Message {
+  time:NullableInt64;
+  propP:NullableBool;
+  propQ:NullableBool;
+  propR:NullableBool;
+  propS:NullableBool;
+}
+
+root_type Message;

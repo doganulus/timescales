@@ -20,7 +20,7 @@ def main(argv):
 
     always_after_q                    UBOUND
     always_before_r                   UBOUND
-    always_between_q_and_r     LBOUND UBOUND 
+    always_between_q_and_r     LBOUND UBOUND
 
     recurrence_globally               UBOUND
     recurrence_between_q_and_r        UBOUND MIN_RECUR MAX_RECUR
@@ -43,6 +43,10 @@ def main(argv):
                         default=100,
                         type=int,
                         metavar='N')
+    parser.add_argument('-p', '--persistent',
+                        help='''enable persistent trace generation''',
+                        action="store_true",
+                        default=False)
     parser.add_argument('--min-recur',
                         help='''define the minimum number of recurrence in the trace if available for the property (default:1)''',
                         default=1,
@@ -75,8 +79,8 @@ def main(argv):
                         default='',
                         metavar='DIR')
     parser.add_argument('--format',
-                        help='''select the output format in {csv, json} (default: csv)''',
-                        default='csv',
+                        help='''select the output format in {csv, json, protobuf3, flatbuf} (default: json)''',
+                        default='json',
                         metavar='FORMAT')
 
     args = parser.parse_args()
@@ -106,8 +110,20 @@ def main(argv):
         timescales.write_spec(past_spec, filename=args.name,
                               directory=args.output_dir)
 
-    timescales.write_trace(rows, filename=args.name,
-                           directory=args.output_dir, format=args.format)
+    if args.format == 'csv':
+        timescales.write_csv_trace(
+            rows, filename=args.name, directory=args.output_dir)
+    elif args.format == 'json':
+        timescales.write_json_trace(rows, filename=args.name,
+                                    directory=args.output_dir,
+                                    persistent=args.persistent)
+    elif args.format == 'flatbuf':
+        timescales.write_flatbuffers_trace(rows, filename=args.name,
+                                           directory=args.output_dir,
+                                           persistent=args.persistent)
+    else:
+        raise ValueError(
+            "Unknown output format. Please see the help for supported output formats.")
 
 
 if __name__ == '__main__':

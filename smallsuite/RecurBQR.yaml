@@ -1,3 +1,0 @@
----
-name : "RecurBQR"
-pattern : "historically((r && !q && once q) -> ((once[:10](p or q)) since q))"

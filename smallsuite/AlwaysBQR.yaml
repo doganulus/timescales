@@ -1,3 +1,0 @@
----
-name : "AlwaysBQR"
-pattern : "historically((r && !q && once q) -> (p since[3:10] q))"

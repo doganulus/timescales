@@ -8,6 +8,8 @@ from properties.bounded_universality import *
 from properties.bounded_recurrence import *
 from properties.bounded_response import *
 
+from serialization.Timescales import Message, NullableInt64, NullableBool
+
 
 def eliminate_stuttering(rows, cap=None):
 
@@ -25,21 +27,6 @@ def eliminate_stuttering(rows, cap=None):
     nrows += [rows[-1]]
 
     return nrows[1:]
-
-
-def forward_persistance(rows):
-
-    prev = rows[0]
-    nrows = [rows[0]]
-
-    for row in rows[1:]:
-        if (row.data != prev.data):
-            nrows += [row]
-        else:
-            nrows += [None]
-        prev = row
-
-    return nrows
 
 
 def forward_eliminate_stuttering(rows, cap=None):
@@ -68,38 +55,95 @@ pattern : "{spec}"
         f.write(spec)
 
 
-def write_trace(rows, filename, directory="", format='csv'):
+def write_csv_trace(rows, filename, directory=""):
+    import csv
+    with open(os.path.join(directory, '{filename}.csv'.format(filename=filename)), 'w') as f:
+        w = csv.writer(f)
+        w.writerows([["time"] + [f for f in rows[0].data._fields]])
+        w.writerows([[row.time] + [d for d in row.data] for row in rows])
 
-    if format == 'csv':
-        import csv
-        with open(os.path.join(directory, '{filename}.csv'.format(filename=filename)), 'w') as f:
-            w = csv.writer(f)
-            w.writerows([["time"] + [f for f in rows[0].data._fields]])
-            w.writerows([[row.time] + [d for d in row.data] for row in rows])
 
-    elif format == 'json':
-        import json
+def write_json_trace(rows, filename, directory="", persistent=True, with_time=True):
+    import json
+    try:
+        os.remove(os.path.join(
+            directory, '{filename}.jsonl'.format(filename=filename)))
+    except OSError:
+        pass
 
-        try:
-            os.remove(os.path.join(
-                directory, '{filename}.jsonl'.format(filename=filename)))
-        except OSError:
-            pass
+    with open(os.path.join(directory, '{filename}.jsonl'.format(filename=filename)), 'a') as f:
+        previous = dict()
+        for row in rows:
+            if with_time:
+                obj = dict(time=row.time)
+            else:
+                obj = dict()
 
-        with open(os.path.join(directory, '{filename}.jsonl'.format(filename=filename)), 'a') as f:
-            for row in rows:
-                if(row != None):
-                    obj = dict(time=row.time)
-                    obj.update(row.data._asdict())
-                    json.dump(obj, f)
-                    f.write('\n')
-                else:
-                    json.dump(dict(), f)
-                    f.write('\n')
+            if not persistent:
+                obj.update(row.data._asdict())
+            else:
+                current = row.data._asdict()
+                current_diff = {(k,  current[k]) for k in current.keys()
+                                if not k in previous or previous[k] != current[k]}
+                obj.update(current_diff)
+                previous = current
+            json.dump(obj, f)
+            f.write('\n')
 
-    else:
-        raise ValueError(
-            "Unknown output format. Please see the help for supported output formats.")
+
+def write_flatbuffers_trace(rows, filename, directory="", persistent=True, with_time=True):
+    import flatbuffers
+    try:
+        os.remove(os.path.join(
+            directory, '{filename}.bin'.format(filename=filename)))
+    except OSError:
+        pass
+
+    with open(os.path.join(directory, '{filename}.bin'.format(filename=filename)), 'w+b') as f:
+        previous = dict()
+        for row in rows:
+            builder = flatbuffers.Builder(512)
+            Message.MessageStart(builder)
+
+            if with_time:
+                Message.MessageAddTime(
+                    builder, NullableInt64.CreateNullableInt64(builder, row.time))
+
+            if not persistent:
+                current = row.data._asdict()
+                if 'p' in current:
+                    Message.MessageAddPropP(
+                        builder, NullableBool.CreateNullableBool(builder, current['p']))
+                if 'q' in current:
+                    Message.MessageAddPropQ(
+                        builder, NullableBool.CreateNullableBool(builder, current['q']))
+                if 'r' in current:
+                    Message.MessageAddPropR(
+                        builder, NullableBool.CreateNullableBool(builder, current['r']))
+                if 's' in current:
+                    Message.MessageAddPropS(
+                        builder, NullableBool.CreateNullableBool(builder, current['s']))
+            else:
+                current = row.data._asdict()
+                if 'p' in current and (not 'p' in previous or current['p'] != previous['p']):
+                    Message.MessageAddPropP(
+                        builder, NullableBool.CreateNullableBool(builder, current['p']))
+                if 'q' in current and (not 'q' in previous or current['q'] != previous['q']):
+                    Message.MessageAddPropQ(
+                        builder, NullableBool.CreateNullableBool(builder, current['q']))
+                if 'r' in current and (not 'r' in previous or current['r'] != previous['r']):
+                    Message.MessageAddPropR(
+                        builder, NullableBool.CreateNullableBool(builder, current['r']))
+                if 's' in current and (not 's' in previous or current['s'] != previous['s']):
+                    Message.MessageAddPropS(
+                        builder, NullableBool.CreateNullableBool(builder, current['s']))
+
+                previous = current
+
+            msg = Message.MessageEnd(builder)
+            builder.FinishSizePrefixed(msg)
+            buf = builder.Output()
+            f.write(buf)
 
 
 def generate(property, lower_bound, upper_bound, min_recur, max_recur, duration, limit_stutter, failing_end):
@@ -194,13 +238,11 @@ def generate(property, lower_bound, upper_bound, min_recur, max_recur, duration,
         rows = forward_eliminate_stuttering(rows, None)  # Maximum condensation
     elif limit_stutter == 0:
         pass  # No condensation
-    elif limit_stutter == 1:
-        rows = forward_persistance(rows)  # Minimum condensation
-    elif limit_stutter >= 2:
+    elif limit_stutter >= 1:
         rows = forward_eliminate_stuttering(
             rows, limit_stutter)  # Limited condensation
     else:
         raise ValueError(
-            "Illegal value for condensation. Must be -1, 0, 1, or 2+")
+            "Illegal value for condensation. Must be -1, 0, 1+")
 
     return past_spec, future_spec, rows

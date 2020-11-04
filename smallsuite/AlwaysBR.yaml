@@ -1,3 +1,0 @@
----
-name : "AlwaysBR"
-pattern : "historically(r -> (historically[:10](p)))"

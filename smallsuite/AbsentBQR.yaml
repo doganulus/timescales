@@ -1,3 +1,0 @@
----
-name : "AbsentBQR"
-pattern : "historically(r && !q && once q ) -> ((not p) since[3:10] q)"
