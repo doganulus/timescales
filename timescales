@@ -44,7 +44,7 @@ def main(argv):
                         type=int,
                         metavar='N')
     parser.add_argument('-p', '--persistent',
-                        help='''enable persistent trace generation''',
+                        help='''enable persistent (delta-encoded) trace generation''',
                         action="store_true",
                         default=False)
     parser.add_argument('--min-recur',
