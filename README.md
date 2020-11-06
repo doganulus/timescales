@@ -12,12 +12,9 @@ The generator `timescales` includes a Makefile to demonstrate the generation of 
 
 The full interface of the benchmark generator `timescales` is as follows:
 
-    usage: timescales [-h] [-d N] [-l N] [-u N] [--min-recur N] [--max-recur N]
-                      [--name STRING] [--condense N] [--failing-end] [--future]
-                      [--output-dir DIR]
-                      property
+    usage: timescales [OPTIONS] PROPERTY
                       
-    timescales is a benchmark generator for metric temporal logic properties
+    timescales is a benchmark generator for some pre-defined metric temporal logic properties
          
     positional arguments:
       property            Supported properties are below:
@@ -40,7 +37,7 @@ The full interface of the benchmark generator `timescales` is as follows:
       -d N, --duration N  define the approximate duration for the trace
       -l N, --lbound N    define the lower bound for the property if available for the property
       -u N, --ubound N    define the upper bound for the property if available for the property
-      --persistent        enable persistent (delta-encoded) trace generation
+      --persistent        enable persistent trace generation
       --min-recur N       define the minimum number of recurrence in the trace if available for the property
       --max-recur N       define the maximum number of recurrence in the trace if available for the property
       --name STRING       define the name of specification (default: spec)
@@ -48,7 +45,7 @@ The full interface of the benchmark generator `timescales` is as follows:
       --failing-end       disable appending a sequence to the trace to make the spec fail (default: false)
       --future            generate a future MTL formula (default: past)
       --output-dir DIR    use existing DIR as the directory to write output files in (default: current)
-      --format FORMAT     select the output format in {csv, json, flatbuf} (default: json)
+      --format FORMAT     select the output format in {csv, json, protobuf, flatbuf} (default: json)
 
 ## cite
 
