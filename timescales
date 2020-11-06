@@ -79,7 +79,7 @@ def main(argv):
                         default='',
                         metavar='DIR')
     parser.add_argument('--format',
-                        help='''select the output format in {csv, json, protobuf3, flatbuf} (default: json)''',
+                        help='''select the output format in {csv, json, protobuf, flatbuf} (default: json)''',
                         default='json',
                         metavar='FORMAT')
 
@@ -117,6 +117,10 @@ def main(argv):
         timescales.write_json_trace(rows, filename=args.name,
                                     directory=args.output_dir,
                                     persistent=args.persistent)
+    elif args.format == 'protobuf':
+        timescales.write_protobuf_trace(rows, filename=args.name,
+                                        directory=args.output_dir,
+                                        persistent=args.persistent)
     elif args.format == 'flatbuf':
         timescales.write_flatbuffers_trace(rows, filename=args.name,
                                            directory=args.output_dir,

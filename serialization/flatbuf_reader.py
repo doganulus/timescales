@@ -1,12 +1,11 @@
 import flatbuffers
-
 from Timescales import Message
 
 
 def flatbuf_reader(filename):
     with open(filename, "rb") as f:
         while True:
-            buf = f.read(4)  # Read Int32 size prefix
+            buf = f.read(4)  # Read UInt32 size prefix
             if not buf:
                 break
             size = flatbuffers.util.GetSizePrefix(buf, 0)
@@ -31,3 +30,9 @@ def flatbuf_reader(filename):
                 obj['s'] = msg.PropS().Value()
 
             yield obj
+
+
+if __name__ == "__main__":
+    import sys
+    for msg in flatbuf_reader(sys.argv[1]):
+        print(msg)

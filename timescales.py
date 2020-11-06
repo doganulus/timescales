@@ -8,8 +8,6 @@ from properties.bounded_universality import *
 from properties.bounded_recurrence import *
 from properties.bounded_response import *
 
-from serialization.Timescales import Message, NullableInt64, NullableBool
-
 
 def eliminate_stuttering(rows, cap=None):
 
@@ -93,6 +91,8 @@ def write_json_trace(rows, filename, directory="", persistent=True, with_time=Tr
 
 def write_flatbuffers_trace(rows, filename, directory="", persistent=True, with_time=True):
     import flatbuffers
+    from serialization.Timescales import Message, NullableInt64, NullableBool
+
     try:
         os.remove(os.path.join(
             directory, '{filename}.bin'.format(filename=filename)))
@@ -144,6 +144,51 @@ def write_flatbuffers_trace(rows, filename, directory="", persistent=True, with_
             builder.FinishSizePrefixed(msg)
             buf = builder.Output()
             f.write(buf)
+
+
+def write_protobuf_trace(rows, filename, directory="", persistent=True, with_time=True):
+    import serialization.Timescales_pb2 as Timescales
+    import struct
+
+    try:
+        os.remove(os.path.join(
+            directory, '{filename}.bin'.format(filename=filename)))
+    except OSError:
+        pass
+
+    with open(os.path.join(directory, '{filename}.bin'.format(filename=filename)), 'w+b') as f:
+        previous = dict()
+        for row in rows:
+            msg = Timescales.Message()
+            if with_time:
+                msg.time = row.time
+
+            if not persistent:
+                current = row.data._asdict()
+                if 'p' in current:
+                    msg.p = current['p']
+                if 'q' in current:
+                    msg.q = current['q']
+                if 'r' in current:
+                    msg.r = current['r']
+                if 's' in current:
+                    msg.s = current['s']
+            else:
+                current = row.data._asdict()
+                if 'p' in current and (not 'p' in previous or current['p'] != previous['p']):
+                    msg.p = current['p']
+                if 'q' in current and (not 'q' in previous or current['q'] != previous['q']):
+                    msg.q = current['q']
+                if 'r' in current and (not 'r' in previous or current['r'] != previous['r']):
+                    msg.r = current['r']
+                if 's' in current and (not 's' in previous or current['s'] != previous['s']):
+                    msg.s = current['s']
+
+            # Pack little-endian UInt32
+            protobuf = msg.SerializeToString()
+            buf_length = struct.pack('<I', len(protobuf))
+
+            f.write(buf_length + protobuf)
 
 
 def generate(property, lower_bound, upper_bound, min_recur, max_recur, duration, limit_stutter, failing_end):
