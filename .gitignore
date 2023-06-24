@@ -1,3 +1,7 @@
+# timescales
+fullsuite/
+largesuite/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
