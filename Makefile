@@ -432,3 +432,30 @@ full-1M-200:
 	
 clean:
 	rm -rf ${DIR}/smallsuite ${DIR}/largesuite ${DIR}/fullsuite
+
+cbuild-base:
+	docker build -t ghcr.io/bounverif/rvbenchmark-base:latest ./rvtools/rvbenchmark -f ./rvtools/rvbenchmark/base.dockerfile
+
+cbuild-reelay: cbuild-base
+	docker build -t ghcr.io/bounverif/reelay:2008 ./rvtools/reelay2008
+
+benchmark-reelay: cbuild-reelay
+	docker run --rm -v ${PWD}:/timescales ghcr.io/bounverif/reelay:2008
+
+cbuild-monpoly: cbuild-base
+	docker build -t ghcr.io/bounverif/monpoly:latest ./rvtools/monpoly
+
+benchmark-monpoly: cbuild-monpoly
+	docker run --rm -v ${PWD}:/timescales ghcr.io/bounverif/monpoly:latest
+
+cbuild-aerial: cbuild-base
+	docker build -t ghcr.io/bounverif/aerial:latest ./rvtools/aerial
+
+benchmark-aerial: cbuild-aerial
+	docker run --rm -v ${PWD}:/timescales ghcr.io/bounverif/aerial:latest
+
+cbuild-montre: cbuild-base
+	docker build -t ghcr.io/bounverif/montre:latest ./rvtools/montre
+
+benchmark-montre: cbuild-montre
+	docker run --rm -v ${PWD}:/timescales ghcr.io/bounverif/montre:latest
