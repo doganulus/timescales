@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: Ulus
+    given-names: Dogan
+    orcid: https://orcid.org/0000-0002-5090-1769
+title: "Timescales: A Benchmark Generator for MTL Monitoring Tools"
+version: 23.0
+doi: 10.1007/978-3-030-32079-9_25
+date-released: 2019-10-01
