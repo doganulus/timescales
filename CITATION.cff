@@ -8,3 +8,6 @@ title: "Timescales: A Benchmark Generator for MTL Monitoring Tools"
 version: 23.0
 doi: 10.1007/978-3-030-32079-9_25
 date-released: 2019-10-01
+license: GPL-3.0
+repository-code: "https://github.com/doganulus/timescales"
+
