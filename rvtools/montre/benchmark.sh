@@ -1,7 +1,7 @@
 #!/bin/bash
 hyperfine \
-    --warmup 1 \
-    --runs 2 \
+    --warmup 3 \
+    --runs 25 \
     --export-json "/timescales/results/montre.discrete.1M.$(date +%s).json" \
     --command-name AbsentAQ10 \
         "montre -b '<:q:>;(p:>|(!p:>)%(0,9))' -f /timescales/fullsuite/AbsentAQ/Discrete/1M/AbsentAQ10.txt >> /dev/null 2>&1" \
@@ -46,11 +46,11 @@ hyperfine \
     --command-name RecurGLB1000 \
         "montre -b '<:p;(!p:>)%(1001,1000000)' -f /timescales/fullsuite/RecurGLB/Discrete/1M/RecurGLB1000.txt >> /dev/null 2>&1" \
     --command-name RecurBQR10 \
-        "montre -b '<:q:>;(!q&&!r);<:p:>;((!p&&!r):>)%(11,1000000);<:r:>' -f /timescales/fullsuite/RecurBQR/Discrete/1M/RecurBQR10.txt >> /dev/null 2>&1" \
+        "montre -b '<:!q;<:p:>;((!p&&!r):>)%(11,1000000);<:r:>' -f /timescales/fullsuite/RecurBQR/Discrete/1M/RecurBQR10.txt >> /dev/null 2>&1" \
     --command-name RecurBQR100 \
         "montre -b '<:!q;<:p:>;((!p&&!r):>)%(101,1000000);<:r:>' -f /timescales/fullsuite/RecurBQR/Discrete/1M/RecurBQR100.txt >> /dev/null 2>&1" \
     --command-name RecurBQR1000 \
-        "montre -b '<:q:>;(!q&&!r);<:p:>;((!p&&!r):>)%(1001,1000000);<:r:>' -f /timescales/fullsuite/RecurBQR/Discrete/1M/RecurBQR1000.txt >> /dev/null 2>&1" \
+        "montre -b '<:!q;<:p:>;((!p&&!r):>)%(1001,1000000);<:r:>' -f /timescales/fullsuite/RecurBQR/Discrete/1M/RecurBQR1000.txt >> /dev/null 2>&1" \
     --command-name RespondGLB10 \
         "montre -b '(<:p:>;(!s)%(0,2);<:s:>)|(<:p:>;(!s:>)%(11,1000000))' -f /timescales/fullsuite/RespondGLB/Discrete/1M/RespondGLB10.txt >> /dev/null 2>&1" \
     --command-name RespondGLB100 \
