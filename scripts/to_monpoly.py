@@ -28,13 +28,13 @@ def convert(filename):
             time = obj['time']
             string = ''
             if 'p' in obj and obj['p'] == True:
-                string += ' p()'
+                string += ' p'
             if 'q' in obj and obj['q'] == True:
-                string += ' q()'
+                string += ' q'
             if 'r' in obj and obj['r'] == True:
-                string += ' r()'
+                string += ' r'
             if 's' in obj and obj['s'] == True:
-                string += ' s()'
+                string += ' s'
 
             outfile.write("@{}{}\n".format(time, string))
 
