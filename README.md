@@ -4,11 +4,11 @@
 
 The purpose of these benchmarks is to measure the performance and scalability of MTL monitoring tools with respect to large timing bounds in the specification over some typical cases. Ideally, the performance of real-time monitoring tools should remain constant when the base time unit has changed. This is due to that different (parts of) systems use different time scales up to orders of magnitude and the specification of slower systems contain large timing bounds.
 
-## use
+## Use
 
 The generator `timescales` includes a Makefile to demonstrate the generation of benchmarks. For each supported property, the command `make small` generates a benchmark that contains a specification with small timing bounds and a short trace. On the other hand, the command `make large` generates three benchmarks for each property with increasingly larger time bounds (1x, 10x, 100x) over traces with a length of 1 million. The large suite has a size of 400MB and is not included in the distribution. Finally the command `make full` extends the large suite by dense time behaviors. The large suite has a size of 550MB and is not included in the distribution. Besides these default benchkmark suites, the customization of benchmark generation can be done easily using the command line interface of `timescales`.
 
-## help
+## Help
 
 The full interface of the benchmark generator `timescales` is as follows:
 
@@ -47,6 +47,45 @@ The full interface of the benchmark generator `timescales` is as follows:
       --output-dir DIR    use existing DIR as the directory to write output files in (default: current)
       --format FORMAT     select the output format in {csv, json, protobuf, flatbuf} (default: json)
 
-## cite
+## Benchmark RV Tools
+
+The repository includes containerized benchmark environments for quick benchmarking for some runtime verification tools. Currently we support `reelay`, `monpoly`, `aerial`, and `montre` tools.
+
+### Reelay (https://github.com/doganulus/reelay)
+```
+git clone https://github.com/doganulus/timescales.git
+cd timescales
+make full
+make benchmark-reelay
+```
+
+### Monpoly (https://bitbucket.org/monpoly/monpoly)
+```
+git clone https://github.com/doganulus/timescales.git
+cd timescales
+make full
+python scripts/to_monpoly.py
+make benchmark-monpoly
+```
+
+### Aerial (https://bitbucket.org/traytel/aerial)
+```
+git clone https://github.com/doganulus/timescales.git
+cd timescales
+make full
+python scripts/to_monpoly.py
+make benchmark-aerial
+```
+
+### Montre (https://github.com/doganulus/montre)
+```
+git clone https://github.com/doganulus/timescales.git
+cd timescales
+make full
+python scripts/to_montre.py
+make benchmark-montre
+```
+
+## Cite
 
 Dogan Ulus. "Timescales: A Benchmark Generator for MTL Monitoring Tools". In: Proceedings of the Conference on Runtime Verification (RV). 2019.
