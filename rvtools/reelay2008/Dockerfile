@@ -1,31 +1,21 @@
-FROM ubuntu:22.04 as builder
+FROM ghcr.io/doganulus/reelay-devel as builder
 
-ARG REELAY_VERSION=v2008
+ARG VERSION=main
+ARG REELAY_VERSION=${VERSION}
 
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install \
-        git \
-        build-essential \
-        automake \
-        autotools-dev \
-        libboost-dev \
-    && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
-
-RUN git clone https://github.com/doganulus/cudd.git /tmp/cudd \
-    && cd /tmp/cudd \
-    && ./configure && aclocal && autoconf \
-    && ./configure --enable-silent-rules --enable-obj \
-    && make && make install \
-    && cd / && rm -rf /tmp/cudd
-
-RUN git clone https://github.com/doganulus/reelay.git /tmp/reelay/ \
-    && cd /tmp/reelay \
-    && make apps && make apps-install \
-    && cd / && rm -rf /tmp/reelay
+RUN git clone https://github.com/doganulus/reelay.git /tmp/reelay \
+      --depth 1 \
+      --branch ${REELAY_VERSION} \
+    && cmake -S/tmp/reelay -B/tmp/reelay/build \
+      -DCMAKE_BUILD_TYPE=Release \
+      -DBUILD_REELAY_APPS=ON \
+      -DBUILD_TESTS=OFF \
+    && cmake --build /tmp/reelay/build/ --target install -j$(nproc) \
+    && rm -rf /tmp/reelay
 
 FROM ghcr.io/bounverif/rvbenchmark-base:latest
 
-COPY --from=builder /usr/local/bin/ /usr/local/
+COPY --from=builder /usr/local/bin/ryjson /usr/local/bin/
 
 WORKDIR /timescales
 
