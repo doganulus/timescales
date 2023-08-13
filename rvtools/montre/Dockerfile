@@ -24,6 +24,7 @@ RUN git checkout e034a9d
 RUN mv montre pymontre
 RUN make && make install
 
+
 # ldd /usr/local/montre
 #
 # linux-vdso.so.1 (0x00007ffcc37ed000)
@@ -57,5 +58,7 @@ COPY --from=builder /usr/local/lib/libmontre.so /usr/local/lib/libmontre.so
 COPY --from=builder /usr/local/bin/montre /usr/local/bin/montre
 
 RUN ldconfig
+
+WORKDIR /timescales
 
 CMD ["/timescales/rvtools/montre/benchmark.sh"]

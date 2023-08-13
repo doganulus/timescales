@@ -26,4 +26,7 @@ RUN git clone https://github.com/doganulus/reelay.git /tmp/reelay/ \
 FROM ghcr.io/bounverif/rvbenchmark-base:latest
 
 COPY --from=builder /usr/local/bin/ /usr/local/
+
+WORKDIR /timescales
+
 CMD ["/timescales/rvtools/reelay2008/benchmark.sh"]

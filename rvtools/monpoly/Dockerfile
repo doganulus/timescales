@@ -14,4 +14,7 @@ RUN git clone --depth=1 --branch $MONPOLY_VERSION https://bitbucket.org/monpoly/
 FROM ghcr.io/bounverif/rvbenchmark-base:latest
 
 COPY --from=builder /home/opam/.local/ /usr/local/
+
+WORKDIR /timescales
+
 CMD ["/timescales/rvtools/monpoly/benchmark.sh"]
