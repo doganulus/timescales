@@ -437,25 +437,25 @@ cbuild-base:
 	docker build -t ghcr.io/doganulus/rvbenchmark-base:latest ./rvtools/rvbenchmark -f ./rvtools/rvbenchmark/base.dockerfile
 
 cbuild-reelay: cbuild-base
-	docker build -t ghcr.io/doganulus/timescales-reelay:latest ./rvtools/reelay2008
+	docker build -t ghcr.io/doganulus/rvbenchmark-reelay:latest ./rvtools/reelay2008
 
 benchmark-reelay: cbuild-reelay
-	docker run --rm -v ${PWD}:/timescales ghcr.io/doganulus/timescales-reelay:latest
+	docker run --rm -v ${PWD}:/timescales ghcr.io/doganulus/rvbenchmark-reelay:latest
 
 cbuild-monpoly: cbuild-base
-	docker build -t ghcr.io/doganulus/timescales-monpoly:latest ./rvtools/monpoly
+	docker build -t ghcr.io/doganulus/rvbenchmark-monpoly:latest ./rvtools/monpoly
 
 benchmark-monpoly: cbuild-monpoly
-	docker run --rm -v ${PWD}:/timescales ghcr.io/doganulus/timescales-monpoly:latest
+	docker run --rm -v ${PWD}:/timescales ghcr.io/doganulus/rvbenchmark-monpoly:latest
 
 cbuild-aerial: cbuild-base
-	docker build -t ghcr.io/doganulus/timescales-aerial:latest ./rvtools/aerial
+	docker build -t ghcr.io/doganulus/rvbenchmark-aerial:latest ./rvtools/aerial
 
 benchmark-aerial: cbuild-aerial
-	docker run --rm -v ${PWD}:/timescales ghcr.io/doganulus/timescales-aerial:latest
+	docker run --rm -v ${PWD}:/timescales ghcr.io/doganulus/rvbenchmark-aerial:latest
 
 cbuild-montre: cbuild-base
-	docker build -t ghcr.io/doganulus/timescales-montre:latest ./rvtools/montre
+	docker build -t ghcr.io/doganulus/rvbenchmark-montre:latest ./rvtools/montre
 
 benchmark-montre: cbuild-montre
-	docker run --rm -v ${PWD}:/timescales ghcr.io/doganulus/timescales-montre:latest
+	docker run --rm -v ${PWD}:/timescales ghcr.io/doganulus/rvbenchmark-montre:latest
