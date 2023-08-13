@@ -11,7 +11,7 @@ RUN git clone --depth=1 --branch $MONPOLY_VERSION https://bitbucket.org/monpoly/
     && dune install --prefix /home/opam/.local \
     && rm -rf /tmp/monpoly
 
-FROM ghcr.io/bounverif/rvbenchmark-base:latest
+FROM ghcr.io/doganulus/rvbenchmark-base:latest
 
 COPY --from=builder /home/opam/.local/ /usr/local/
 

@@ -13,7 +13,7 @@ RUN git clone https://github.com/doganulus/reelay.git /tmp/reelay \
     && cmake --build /tmp/reelay/build/ --target install -j$(nproc) \
     && rm -rf /tmp/reelay
 
-FROM ghcr.io/bounverif/rvbenchmark-base:latest
+FROM ghcr.io/doganulus/rvbenchmark-base:latest
 
 COPY --from=builder /usr/local/bin/ryjson /usr/local/bin/
 

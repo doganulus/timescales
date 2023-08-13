@@ -19,7 +19,7 @@ RUN git clone --depth=1 --branch $AERIAL_VERSION https://bitbucket.org/traytel/a
     && mkdir -p /home/opam/.local/bin/ && cp /tmp/aerial/aerial.native /home/opam/.local/bin/aerial \
     && rm -rf /tmp/aerial
 
-FROM ghcr.io/bounverif/rvbenchmark-base:latest
+FROM ghcr.io/doganulus/rvbenchmark-base:latest
 
 COPY --from=builder /home/opam/.local/ /usr/local/
 

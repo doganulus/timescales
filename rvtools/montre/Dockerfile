@@ -45,7 +45,7 @@ RUN make && make install
 # libbsd.so.0 => /lib/x86_64-linux-gnu/libbsd.so.0 (0x00007f6e42f85000)
 # libmd.so.0 => /lib/x86_64-linux-gnu/libmd.so.0 (0x00007f6e42f78000)
 
-FROM ghcr.io/bounverif/rvbenchmark-base:latest
+FROM ghcr.io/doganulus/rvbenchmark-base:latest
 
 COPY --from=builder /lib/x86_64-linux-gnu/libmd.so.0 /lib/x86_64-linux-gnu/libmd.so.0
 COPY --from=builder /lib/x86_64-linux-gnu/libbsd.so.0 /lib/x86_64-linux-gnu/libbsd.so.0
