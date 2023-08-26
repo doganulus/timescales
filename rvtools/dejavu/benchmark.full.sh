@@ -13,6 +13,10 @@ hyperfine \
         "dejavu /examples/locks/dataraces/prop.qtl /examples/locks/dataraces/log4.csv > /dev/null 2>&1" \
     --command-name LocksDeadlocks \
         "dejavu /examples/locks/deadlocks/prop.qtl /examples/locks/deadlocks/log4.csv > /dev/null 2>&1" \
+    --command-name TelemetryProp1 \
+        "dejavu /examples/telemetry/prop1.qtl /examples/telemetry/biglog1000k.csv > /dev/null 2>&1" \
+    --command-name TelemetryProp2 \
+        "dejavu /examples/telemetry/prop2.qtl /examples/telemetry/biglog1000k.csv > /dev/null 2>&1" \
     --command-name TimedAccess \
         "dejavu /examples/timed/access/spec.timed.txt /examples/timed/access/log.1000k.timed.csv > /dev/null 2>&1" \
     --command-name TimedCommands \
