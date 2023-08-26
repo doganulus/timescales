@@ -39,6 +39,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 
 COPY --from=builder /usr/local/bin/ /usr/local/bin/
 COPY --from=builder /tmp/dejavu/out/examples /examples
+COPY --from=builder /tmp/dejavu/src/test/scala/tests_atva2020/dejavu-timing-atva-2020 /examples/timed
 
 WORKDIR /dejavu
 
