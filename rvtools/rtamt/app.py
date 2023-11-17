@@ -4,7 +4,8 @@ import sys
 import argparse
 
 import rtamt
-import jsonlines
+import json
+# import simdjson as json
 
 from rtamt.syntax.ast.parser.stl.specification_parser import StlAst
 from rtamt.semantics.stl.discrete_time.online.interpreter import StlDiscreteTimeOnlineInterpreter
@@ -28,11 +29,10 @@ def discrete_time_monitor(formula, filepath):
     spec.spec = 'out = {}'.format(formula)
     spec.parse()
 
-    with jsonlines.open(filepath) as reader:
-        for obj in reader:
+    with open(filepath, 'r') as file:
+        for line in file:
+            obj = json.loads(line.strip())
             rob = spec.update(obj["time"], obj.items())
-
-    print(rob)
 
 def main(argv):
 
