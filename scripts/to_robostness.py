@@ -24,27 +24,28 @@ def convert(filename):
     # Opening JSON Lines file
     with jsonlines.open(input_fullpath) as reader:
 
-        time = 0
-        
         for obj in reader:
+            mod = dict()
+            if 'time' in obj:
+                mod['time'] = obj['time']
             if 'p' in obj and obj['p'] == True:
-                obj['p'] = 1.1
+                mod['p'] = 1.1
             if 'p' in obj and obj['p'] == False:
-                obj['p'] = -1.1
+                mod['p'] = -1.1
             if 'q' in obj and obj['q'] == True:
-                obj['q'] = 1.1
+                mod['q'] = 1.1
             if 'q' in obj and obj['q'] == False:
-                obj['q'] = -1.1
+                mod['q'] = -1.1
             if 'r' in obj and obj['r'] == True:
-                obj['r'] = 1.1
+                mod['r'] = 1.1
             if 'r' in obj and obj['r'] == False:
-                obj['r'] = -1.1
+                mod['r'] = -1.1
             if 's' in obj and obj['s'] == True:
-                obj['s'] = 1.1
+                mod['z'] = 1.1
             if 's' in obj and obj['s'] == False:
-                obj['s'] = -1.1
+                mod['z'] = -1.1
 
-            outfile.write(json.dumps(obj) + '\n')
+            outfile.write(json.dumps(mod) + '\n')
 
 if __name__ == "__main__":
 

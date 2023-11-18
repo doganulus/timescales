@@ -16,13 +16,13 @@ def discrete_time_monitor(formula, filepath):
     spec.declare_var('p', 'float')
     spec.declare_var('q', 'float')
     spec.declare_var('r', 'float')
-    spec.declare_var('s', 'float')
+    spec.declare_var('z', 'float')
     spec.declare_var('out', 'float')
 
     spec.set_var_io_type('p', 'input')
     spec.set_var_io_type('q', 'input')
     spec.set_var_io_type('r', 'input')
-    spec.set_var_io_type('s', 'input')
+    spec.set_var_io_type('z', 'input')
 
     print(formula)
 
@@ -40,13 +40,15 @@ def main(argv):
         description='timescales is a benchmark generator for metric temporal logic properties',
         formatter_class=argparse.RawTextHelpFormatter)
     
-    parser.add_argument('-f','--formula',
-                        help='''define the specification''',
-                        metavar='STRING')
+    parser.add_argument(
+        '-f', '--formula',
+        help='''define the specification''',
+        metavar='STRING')
     
-    parser.add_argument('--filepath',
-                        help='''define the log filepath''',
-                        metavar='PATH')
+    parser.add_argument(
+        '--filepath',
+        help='''define the log filepath''',
+        metavar='PATH')
     
     args = parser.parse_args()
 
