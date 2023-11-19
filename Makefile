@@ -434,28 +434,46 @@ clean:
 	rm -rf ${DIR}/smallsuite ${DIR}/largesuite ${DIR}/fullsuite
 
 cbuild-base:
-	docker build -t ghcr.io/doganulus/rvbenchmark-base:latest ./rvtools/rvbenchmark -f ./rvtools/rvbenchmark/base.dockerfile
+	docker build -t ghcr.io/bounverif/rvbenchmark-base:latest ./rvtools/rvbenchmark -f ./rvtools/rvbenchmark/base.dockerfile
 
 cbuild-reelay: cbuild-base
-	docker build -t ghcr.io/doganulus/rvbenchmark-reelay:latest ./rvtools/reelay2008
+	docker build -t ghcr.io/bounverif/reelay:2008 ./rvtools/reelay2008
 
 benchmark-reelay: cbuild-reelay
-	docker run --rm -v ${PWD}:/timescales ghcr.io/doganulus/rvbenchmark-reelay:latest
+	docker run --rm -v ${PWD}:/timescales ghcr.io/bounverif/reelay:2008
+
+benchmark-reelay-dn10: cbuild-reelay
+	docker run --rm -v ${PWD}:/timescales ghcr.io/bounverif/reelay:2008 rvtools/reelay2008/benchmark.dn10.sh
+
+benchmark-reelay-dn100: cbuild-reelay
+	docker run --rm -v ${PWD}:/timescales ghcr.io/bounverif/reelay:2008 rvtools/reelay2008/benchmark.dn100.sh
+
+benchmark-reelay-rbt: cbuild-reelay
+	docker run --rm -v ${PWD}:/timescales ghcr.io/bounverif/reelay:2008 rvtools/reelay2008/benchmark.rbt.sh
 
 cbuild-monpoly: cbuild-base
-	docker build -t ghcr.io/doganulus/rvbenchmark-monpoly:latest ./rvtools/monpoly
+	docker build -t ghcr.io/bounverif/monpoly:latest ./rvtools/monpoly
 
 benchmark-monpoly: cbuild-monpoly
-	docker run --rm -v ${PWD}:/timescales ghcr.io/doganulus/rvbenchmark-monpoly:latest
+	docker run --rm -v ${PWD}:/timescales ghcr.io/bounverif/monpoly:latest
 
 cbuild-aerial: cbuild-base
-	docker build -t ghcr.io/doganulus/rvbenchmark-aerial:latest ./rvtools/aerial
+	docker build -t ghcr.io/bounverif/aerial:latest ./rvtools/aerial
 
 benchmark-aerial: cbuild-aerial
-	docker run --rm -v ${PWD}:/timescales ghcr.io/doganulus/rvbenchmark-aerial:latest
+	docker run --rm -v ${PWD}:/timescales ghcr.io/bounverif/aerial:latest
 
 cbuild-montre: cbuild-base
-	docker build -t ghcr.io/doganulus/rvbenchmark-montre:latest ./rvtools/montre
+	docker build -t ghcr.io/bounverif/montre:latest ./rvtools/montre
 
 benchmark-montre: cbuild-montre
-	docker run --rm -v ${PWD}:/timescales ghcr.io/doganulus/rvbenchmark-montre:latest
+	docker run --rm -v ${PWD}:/timescales ghcr.io/bounverif/montre:latest
+
+cbuild-rtamt: cbuild-base
+	docker build -t ghcr.io/bounverif/rtamt:latest ./rvtools/rtamt
+
+benchmark-rtamt: cbuild-rtamt
+	docker run --rm -v ${PWD}:/timescales ghcr.io/bounverif/rtamt:latest
+
+benchmark-rtamt-rbt: cbuild-rtamt
+	docker run --rm -v ${PWD}:/timescales ghcr.io/bounverif/rtamt:latest rvtools/rtamt/benchmark.sh
