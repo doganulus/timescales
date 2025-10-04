@@ -1,5 +1,7 @@
 import os
 import sys
+import struct
+import flatbuffers
 
 from collections import namedtuple
 
@@ -7,6 +9,9 @@ from .properties.bounded_absence import *
 from .properties.bounded_universality import *
 from .properties.bounded_recurrence import *
 from .properties.bounded_response import *
+
+from .serialization import Timescales_pb2 as Timescales
+from .serialization.Timescales import Message, NullableInt64, NullableBool
 
 
 def eliminate_stuttering(rows, cap=None):
@@ -90,8 +95,6 @@ def write_json_trace(rows, filename, directory="", persistent=True, with_time=Tr
 
 
 def write_flatbuffers_trace(rows, filename, directory="", persistent=True, with_time=True):
-    import flatbuffers
-    from serialization.Timescales import Message, NullableInt64, NullableBool
 
     try:
         os.remove(os.path.join(
@@ -147,9 +150,6 @@ def write_flatbuffers_trace(rows, filename, directory="", persistent=True, with_
 
 
 def write_protobuf_trace(rows, filename, directory="", persistent=True, with_time=True):
-    import serialization.Timescales_pb2 as Timescales
-    import struct
-
     try:
         os.remove(os.path.join(
             directory, '{filename}.bin'.format(filename=filename)))

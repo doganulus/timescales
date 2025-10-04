@@ -8,6 +8,11 @@ authors = [
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.8"
+dependencies = [
+    "jsonlines",
+    "flatbuffers",
+    "protobuf"
+]
 
 [project.urls]
 Homepage = "https://github.com/doganulus/timescales"
