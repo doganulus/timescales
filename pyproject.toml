@@ -1,6 +1,6 @@
 [project]
 name = "timescales"
-version = "0.4.0"
+version = "0.5.0"
 description = "A benchmark generator for Metric Temporal Logic (MTL) monitoring tools"
 authors = [
     { name = "Dogan Ulus", email = "dogan.ulus@bogazici.edu.tr" }
