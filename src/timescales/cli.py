@@ -6,7 +6,7 @@ import argparse
 import timescales
 
 
-def main(argv):
+def main():
 
     parser = argparse.ArgumentParser(
         description='timescales is a benchmark generator for metric temporal logic properties',
@@ -131,4 +131,4 @@ def main(argv):
 
 
 if __name__ == '__main__':
-    main(sys.argv)
+    main()

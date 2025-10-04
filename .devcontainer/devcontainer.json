@@ -1,0 +1,12 @@
+{
+  "image": "docker.io/library/python:3.11",
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance"
+      ]
+    }
+  }
+}

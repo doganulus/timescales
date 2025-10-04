@@ -1,7 +1,10 @@
 # timescales
-fullsuite/
+smallsuite/
 largesuite/
+fullsuite/
 results/*.json
+/dejavu/
+/djvsuite/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

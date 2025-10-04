@@ -1,0 +1,28 @@
+[project]
+name = "timescales"
+version = "0.4.0"
+description = "A benchmark generator for Metric Temporal Logic (MTL) monitoring tools"
+authors = [
+    { name = "Dogan Ulus", email = "dogan.ulus@bogazici.edu.tr" }
+]
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.8"
+
+[project.urls]
+Homepage = "https://github.com/doganulus/timescales"
+
+[project.scripts]
+timescales = "timescales.cli:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["timescales*"]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"

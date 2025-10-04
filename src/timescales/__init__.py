@@ -3,10 +3,10 @@ import sys
 
 from collections import namedtuple
 
-from properties.bounded_absence import *
-from properties.bounded_universality import *
-from properties.bounded_recurrence import *
-from properties.bounded_response import *
+from .properties.bounded_absence import *
+from .properties.bounded_universality import *
+from .properties.bounded_recurrence import *
+from .properties.bounded_response import *
 
 
 def eliminate_stuttering(rows, cap=None):
