@@ -67,7 +67,7 @@ def main():
                         type=int,
                         metavar='N')
     parser.add_argument('--failing-end',
-                        help='''disable appending a sequence to the trace to make the spec fail (default: false)''',
+                        help='''enable appending a sequence to the trace to make the spec fail (default: false)''',
                         action="store_true",
                         default=False)
     parser.add_argument('--future',
