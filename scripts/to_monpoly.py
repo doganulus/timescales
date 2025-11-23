@@ -19,6 +19,8 @@ def convert(filename):
 
     outfile = open(output_fullpath , "w")
 
+    print(input_fullpath)
+
     # Opening JSON Lines file
     with jsonlines.open(input_fullpath) as reader:
 
@@ -40,7 +42,5 @@ def convert(filename):
 
 if __name__ == "__main__":
 
-    traces = glob.glob('**/*.jsonl', recursive=True)
-
-    for trace in  glob.glob('**/*.jsonl', recursive=True):
+    for trace in glob.glob('fullsuite/**/*.jsonl', recursive=True):
         convert(trace)

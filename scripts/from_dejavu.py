@@ -42,7 +42,7 @@ def convert(filename):
 
 if __name__ == "__main__":
 
-    traces = glob.glob('**/*.csv', recursive=True)
+    traces = glob.glob('/dejavu/**/*.csv', recursive=True)
 
     for trace in traces:
         convert(trace)

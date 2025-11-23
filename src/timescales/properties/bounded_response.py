@@ -60,7 +60,7 @@ class bounded_response_between_q_and_r:
         return "always(({{q}} && !{{r}} && eventually {{r}}) -> ({{p}} -> (!{{r}} until[{a}:{b}] ({{s}} and !{{r}})) until {{r}}))".format(a=lower_bound, b=upper_bound)
 
     @staticmethod
-    def generate_trace(lower_bound, upper_bound, min_recur=True, max_recur=7, duration=1000, failing_end=True):
+    def generate_trace(lower_bound, upper_bound, min_recur=1, max_recur=7, duration=1000, failing_end=True):
 
         Data = namedtuple('Data', ['q', 'p', 's', 'r'])
 

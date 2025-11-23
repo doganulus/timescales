@@ -63,7 +63,7 @@ class bounded_recurrence_between_q_and_r:
         return "always(({{q}} && !{{r}} && eventually {{r}}) -> ((eventually[:{b}]({{p}} or {{r}})) until {{r}}))".format(b=upper_bound)
 
     @staticmethod
-    def generate_trace(upper_bound, duration=1000, min_recur=True, max_recur=7, failing_end=True):
+    def generate_trace(upper_bound, duration=1000, min_recur=1, max_recur=7, failing_end=True):
 
         Data = namedtuple('Data', ['q', 'p', 'r'])
 
