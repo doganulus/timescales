@@ -1,0 +1,11 @@
+namespace Timescales;
+
+table BenchmarkMessage {
+  time:int32 = null;
+  p:bool = null;
+  q:bool = null;
+  r:bool = null;
+  s:bool = null;
+}
+
+root_type BenchmarkMessage;

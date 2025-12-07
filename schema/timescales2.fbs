@@ -1,0 +1,14 @@
+namespace Timescales;
+
+table BenchmarkMessage {
+  time:OptionalInt64;
+  p: OptionalBool;
+  q: OptionalBool;
+  r: OptionalBool;
+  s: OptionalBool;
+}
+
+table OptionalInt64 { value:int64; }
+table OptionalBool  { value:bool;  }
+
+root_type BenchmarkMessage;
